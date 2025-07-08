@@ -87,65 +87,63 @@
       </div>
       <div class="card-grid">
 
-        <!-- Wrapper Card: Opens Popup -->
-        <section class="card expandable-card" data-id="govt-jobs-popup">
-          <h2>Explore Central / State / PSU Jobs</h2>
+        <!-- Central Govt. Jobs -->
+        <section class="card job-card" data-type="central" data-url="https://rrbrecruitmentstaging.net/#/auth/landing">
+          <h3>Indian Railway</h3>
           <div class="img-wrapper">
-            <img src="./assets/jobs-cover.jpg" alt="govt-jobs-cover" />
+            <button class="star-btn">☆</button>
+            <img src="./assets/cjobs.webp" alt="Central Job" />
           </div>
         </section>
 
-        <!-- Hidden Nested Job Data (Used by JS Popup) -->
-        <div class="hidden-job-data" style="display: none;">
+        <!-- State Govt. Jobs -->
+        <section class="card job-card" data-type="state" data-url="https://wbpsc.gov.in">
+          <h3>WBPSC Clerkship</h3>
+          <div class="img-wrapper">
+            <button class="star-btn">☆</button>
+            <img src="./assets/sjobs.webp" alt="State Job" />
+          </div>
+        </section>
 
-          <!-- Central Govt. Jobs -->
-          <section class="expandable-sub-card" data-type="central">
-            <h2 class="toggle-sub">Central Govt. Jobs</h2>
-            <div class="nested-job-cards">
-              <section class="card job-card" data-url="https://rrbrecruitmentstaging.net/#/auth/landing">
-                <h3>Indian Railway</h3>
-                <div class="img-wrapper">
-                  <img src="./assets/cjobs.webp" alt="c-jobs" />
-                </div>
-              </section>
-            </div>
-          </section>
+        <!-- PSU Jobs -->
+        <section class="card job-card" data-type="psu" data-url="https://www.grse.in/career/">
+          <h3>GRSE</h3>
+          <div class="img-wrapper">
+            <button class="star-btn">☆</button>
+            <img src="./assets/psujobs.webp" alt="PSU Job" />
+          </div>
+        </section>
 
-          <!-- State Govt. Jobs -->
-          <section class="expandable-sub-card" data-type="state">
-            <h2 class="toggle-sub">State Govt. (WB) Jobs</h2>
-            <div class="nested-job-cards">
-              <section class="card job-card" data-url="https://wbpsc.gov.in">
-                <h3>WBPSC Clerkship</h3>
-                <div class="img-wrapper">
-                  <img src="./assets/sjobs.webp" alt="s-jobs" />
-                </div>
-              </section>
-            </div>
-          </section>
+        <!-- More job cards if needed -->
+        <section class="card job-card" data-type="central" data-url="https://example.com/central2">
+          <h3>UPSC Civil Services</h3>
+          <div class="img-wrapper">
+            <button class="star-btn">☆</button>
+            <img src="./assets/cjobs2.webp" alt="Central Job 2" />
+          </div>
+        </section>
 
-          <!-- PSU Jobs -->
-          <section class="expandable-sub-card" data-type="psu">
-            <h2 class="toggle-sub">PSU Jobs</h2>
-            <div class="nested-job-cards">
-              <section class="card job-card" data-url="https://www.grse.in/career/">
-                <h3>GRSE</h3>
-                <p>Apply</p>
-                <div class="img-wrapper">
-                  <img src="./assets/psujobs.webp" alt="psu-jobs" />
-                </div>
-              </section>
-            </div>
-          </section>
+        <section class="card job-card" data-type="state" data-url="https://example.com/state2">
+          <h3>West Bengal Police</h3>
+          <div class="img-wrapper">
+            <button class="star-btn">☆</button>
+            <img src="./assets/sjobs2.webp" alt="State Job 2" />
+          </div>
+        </section>
 
-        </div>
+        <section class="card job-card" data-type="psu" data-url="https://example.com/psu2">
+          <h3>IOCL Recruitment</h3>
+          <div class="img-wrapper">
+            <button class="star-btn">☆</button>
+            <img src="./assets/psujobs2.webp" alt="PSU Job 2" />
+          </div>
+        </section>
 
       </div> <!-- end .card-grid -->
     </div> <!-- end .section-container (Govt. Jobs) -->
-
   </div> <!-- end .container -->
-   <!-- ========== Footer ========== -->
 
+   <!-- ========== Footer ========== -->
   <footer class="site-footer">
     <p>&copy; 2025 ULVOXO. All rights reserved.</p>
     <p>Made with ❤️ for students and job seekers.</p>

@@ -1,3 +1,28 @@
+/* ───────── CSS Root Variables ───────── */
+:root {
+  /* Colors */
+  --primary-color: #0070f3;
+  --primary-light: #e5e5f7;
+  --primary-dark: #005ac1;
+  --text-color: #111;
+  --muted-text: #777;
+  --bg-color: #f9f9f9;
+  --white: #fff;
+  --border-color: #e2e8f0;
+
+  /* Spacing & Sizing */
+  --max-width: 1200px;
+  --section-gap: 4rem;
+  --card-padding: 1rem;
+  --card-radius: 12px;
+  --transition-speed: 0.3s;
+
+  /* Shadows */
+  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+  --box-shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
 /* ───────── Global Reset & Base ───────── */
 * {
   margin: 0;
@@ -7,16 +32,16 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: #f9f9f9;
-  color: #111;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.5;
   padding-bottom: 5rem;
 }
 
 /* ───────── Header ───────── */
 .site-header {
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  background: var(--white);
+  box-shadow: var(--header-shadow);
   align-items: left;
 }
 
@@ -27,21 +52,21 @@ body {
 
 /* ───────── Section Container ───────── */
 .container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 2rem auto;
   padding: 0 1rem;
 }
 
 .section-container {
-  margin-bottom: 4rem;
+  margin-bottom: var(--section-gap);
 }
 
 .section-title {
   font-size: 2rem;
-  color: #0070f3;
+  color: var(--primary-color);
   margin-bottom: 1.5rem;
   font-weight: 700;
-  border-left: 6px solid #0070f3;
+  border-left: 6px solid var(--primary-color);
   padding-left: 12px;
 }
 
@@ -54,21 +79,21 @@ body {
 
 /* ───────── Card ───────── */
 .card {
-  background-color: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.06);
-  padding: 1rem;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--card-padding);
   width: 100%;
   max-width: 280px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
   position: relative;
   cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: var(--box-shadow-hover);
 }
 
 .card h2, .card h3 {
@@ -103,12 +128,12 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: white;
+  background: var(--white);
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
   z-index: 1;
-  transition: color 0.2s;
+  transition: color var(--transition-speed);
 }
 
 .star-btn.starred {
@@ -119,10 +144,10 @@ body {
   color: #ffb400;
 }
 
-/* ───────── Expandable Job Card ───────── */
+/* ───────── Expandable Card (Old) ───────── */
 .expandable-card {
   background: linear-gradient(135deg, #eaf1ff, #f5faff);
-  border: 2px dashed #0070f3;
+  border: 2px dashed var(--primary-color);
   text-align: center;
   cursor: pointer;
 }
@@ -139,7 +164,7 @@ body {
 }
 
 .popup-content {
-  background: #fff;
+  background: var(--white);
   padding: 2rem;
   border-radius: 16px;
   width: 90%;
@@ -170,28 +195,28 @@ body {
 
 .popup-step1-btn,
 .popup-back-btn {
-  background: #0070f3;
-  color: white;
+  background: var(--primary-color);
+  color: var(--white);
   border: none;
   padding: 0.75rem 1.2rem;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition-speed) ease;
 }
 
 .popup-step1-btn:hover,
 .popup-back-btn:hover {
-  background: #005ac1;
+  background: var(--primary-dark);
 }
 
 .popup-card {
-  background: #f9f9f9;
+  background: var(--bg-color);
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 1rem;
   margin-top: 1rem;
-  transition: all 0.2s;
+  transition: all var(--transition-speed);
 }
 
 .popup-card:hover {
@@ -202,29 +227,16 @@ body {
 
 /* ───────── Footer ───────── */
 .site-footer {
-  background: #fff;
+  background: var(--white);
   text-align: center;
   padding: 2rem 1rem;
-  margin-top: 4rem;
+  margin-top: var(--section-gap);
   font-size: 0.9rem;
-  color: #777;
+  color: var(--muted-text);
   border-top: 1px solid #ddd;
 }
 
-/* ───────── Responsive ───────── */
-@media (max-width: 768px) {
-  .card-grid {
-    justify-content: center;
-  }
-
-  .card {
-    max-width: 100%;
-  }
-
-  .section-title {
-    font-size: 1.5rem;
-  }
-}
+/* ───────── Job Filters ───────── */
 .job-filters {
   display: flex;
   justify-content: center;
@@ -234,18 +246,78 @@ body {
 }
 
 .filter-btn {
-  background-color: #e5e5f7;
-  border: 1px solid #0070f3;
-  color: #0070f3;
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
   padding: 8px 14px;
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all var(--transition-speed) ease-in-out;
 }
 
 .filter-btn.active,
 .filter-btn:hover {
-  background-color: #0070f3;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+/* ───────── Govt. Jobs Grid (Instagram Scroll) ───────── */
+.section-container:nth-child(4) .card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  max-height: 1200px; /* Limit height for scroll */
+  overflow-y: auto;
+  padding-right: 8px; /* room for scrollbar */
+}
+
+/* Large screens: max 8 columns */
+@media (min-width: 1024px) {
+  .section-container:nth-child(4) .card-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Medium screens: 4 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-container:nth-child(4) .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Small screens: 2 columns */
+@media (max-width: 767px) {
+  .section-container:nth-child(4) .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* ───────── Disabled Star Button ───────── */
+.star-btn.disabled {
+  color: #ccc; /* Greyed out */
+  cursor: not-allowed;
+  pointer-events: none; /* Disable all interactions */
+  position: relative;
+}
+
+.star-btn.disabled::after {
+  content: "Login required to star";
+  position: absolute;
+  bottom: 125%; /* Above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.star-btn.disabled:hover::after {
+  opacity: 1;
 }

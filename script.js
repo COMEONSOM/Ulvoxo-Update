@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   let userKey = params.get('user');
 
-  // 🟠 If not in URL, check sessionStorage
-  if (!userKey && sessionStorage.getItem('ulvoxoUser')) {
-    userKey = sessionStorage.getItem('ulvoxoUser');
+  // 🟠 If not in URL, check localStorage
+  if (!userKey && localStorage.getItem('ulvoxoUser')) {
+    userKey = localStorage.getItem('ulvoxoUser');
   }
 
   // 🔴 If still no user, fallback to guest
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     userKey = 'guest@ulvoxo';
   }
 
-  // Save to sessionStorage for later page loads
-  sessionStorage.setItem('ulvoxoUser', userKey);
+  // Save to localStorage for later page loads
+  localStorage.setItem('ulvoxoUser', userKey);
 
   const isGuest = userKey === 'guest@ulvoxo';
   const storageKey = `starredCards_${userKey}`;

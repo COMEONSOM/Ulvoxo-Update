@@ -1,16 +1,36 @@
-<!-- No major changes in structure, mostly clarifying nested card containers -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Old Technology.edu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ULVOXO UPDATE</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container" id="cardContainer">
 
-    <!-- Main Cards -->
+    <!-- ========== ITI Section ========== -->
+    <h1 class="section-title">ITI</h1>
+    <section class="card" data-id="iti-dashboard" data-url="https://www.skillindiadigital.gov.in/home">
+      <button class="star-btn">☆</button>
+      <h2>ITI Student Portal (Skill India)</h2>
+      <div class="img-wrapper">
+        <img src="iti.jpg" alt="iti" />
+      </div>
+    </section>
+
+    <!-- ========== Diploma Section ========== -->
+    <h1 class="section-title">DIPLOMA</h1>
+    <section class="card" data-id="diploma-dashboard" data-url="https://webscte.co.in/">
+      <button class="star-btn">☆</button>
+      <h2>Diploma Student Portal (WEBSCTE)</h2>
+      <div class="img-wrapper">
+        <img src="diploma.jpg" alt="diploma" />
+      </div>
+    </section>
+
+    <!-- ========== B.Tech Section ========== -->
+    <h1 class="section-title">B.TECH</h1>
     <section class="card" data-id="makaut" data-url="https://makaut1.ucanapply.com/smartexam/public/student">
       <button class="star-btn">☆</button>
       <h2>MAKAUT Student Dashboard</h2>
@@ -21,13 +41,22 @@
 
     <section class="card" data-id="svmcm" data-url="https://svmcm.wb.gov.in/">
       <button class="star-btn">☆</button>
-      <h2>S.V.M.C.M Scholarship (Apply Now)</h2>
+      <h2>Apply Scholarship (S.V.M.C.M)</h2>
       <div class="img-wrapper">
         <img src="scholarship.jpg" alt="svmcm" />
       </div>
     </section>
 
-    <!-- Expandable Card with Nested Tools -->
+    <section class="card" data-id="makaut" data-url="https://www.HAVR TO CHANGE.org/">
+      <button class="star-btn">☆</button>
+      <h2>CGPA to Percentage (MAKAUT)</h2>
+      <div class="img-wrapper">
+        <img src="cgpa.jpg" alt="cgpa" />
+      </div>
+    </section>
+
+    <!-- ========== Govt. Jobs Section ========== -->
+    <h1 class="section-title">Govt. Jobs</h1>
     <section class="card expandable-card">
       <button class="star-btn">☆</button>
       <h2>Govt. Jobs Notification</h2>
@@ -44,16 +73,8 @@
             <img src="cjobs.webp" alt="c-jobs" />
           </div>
           <div class="nested-job-cards hidden">
-            <section class="card job-card" data-url="https://upsc.gov.in">
-              <h3>UPSC Recruitment 2025</h3>
-              <p>Last Date: May 30</p>
-              <div class="img-wrapper">
-                <img src="cjobs.webp" alt="c-jobs" />
-              </div>
-            </section>
-            <section class="card job-card" data-url="https://indianrailways.gov.in">
-              <h3>Railway Jobs</h3>
-              <p>Apply Now</p>
+            <section class="card job-card" data-url="https://rrbrecruitmentstaging.net/#/auth/landing">
+              <h3>Indian Railway</h3>
               <div class="img-wrapper">
                 <img src="cjobs.webp" alt="c-jobs" />
               </div>
@@ -70,16 +91,25 @@
           <div class="nested-job-cards hidden">
             <section class="card job-card" data-url="https://wbpsc.gov.in">
               <h3>WBPSC Clerkship</h3>
-              <p>Apply by June 10</p>
               <div class="img-wrapper">
                 <img src="sjobs.webp" alt="s-jobs" />
               </div>
             </section>
-            <section class="card job-card" data-url="https://wbcsc.org.in">
-              <h3>School Service Commission</h3>
-              <p>Details inside</p>
+          </div>
+        </section>
+
+        <!-- PSU Jobs -->
+        <section class="card expandable-sub-card">
+          <h2 class="toggle-sub">PSU Jobs</h2>
+          <div class="img-wrapper">
+            <img src="psujobs.jpg" alt="psu-jobs" />
+          </div>
+          <div class="nested-job-cards hidden">
+            <section class="card job-card" data-url="https://www.grse.in/career/">
+              <h3>GRSE</h3>
+              <p>Apply</p>
               <div class="img-wrapper">
-                <img src="sjobs.webp" alt="s-jobs" />
+                <img src="psujobs.webp" alt="psu-jobs" />
               </div>
             </section>
           </div>

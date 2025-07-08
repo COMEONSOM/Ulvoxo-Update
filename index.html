@@ -7,117 +7,149 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- ========== Header ========== -->
+  <header class="site-header">
+    <div class="logo-wrapper">
+      <img src="./assets/logo.png" alt="ULVOXO UPDATE Logo" class="site-logo" />
+    </div>
+  </header>
+
+  <!-- ========== Main Content ========== -->
   <div class="container" id="cardContainer">
 
     <!-- ========== ITI Section ========== -->
-    <h1 class="section-title">ITI</h1>
-    <section class="card" data-id="iti-dashboard" data-url="https://www.skillindiadigital.gov.in/home">
-      <button class="star-btn">☆</button>
-      <h2>ITI Student Portal (Skill India)</h2>
-      <div class="img-wrapper">
-        <img src="./assets/skillindia.png" alt="iti" />
+    <div class="section-container">
+      <h1 class="section-title">ITI</h1>
+      <div class="card-grid">
+        <section class="card" data-id="iti-dashboard" data-url="https://www.skillindiadigital.gov.in/home">
+          <button class="star-btn">☆</button>
+          <h2>ITI Student Portal (Skill India)</h2>
+          <div class="img-wrapper">
+            <img src="./assets/skillindia.png" alt="iti" />
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <!-- ========== Diploma Section ========== -->
-    <h1 class="section-title">DIPLOMA</h1>
-    <section class="card" data-id="diploma-dashboard" data-url="https://webscte.co.in/">
-      <button class="star-btn">☆</button>
-      <h2>Diploma Student Portal (WEBSCTE)</h2>
-      <div class="img-wrapper">
-        <img src="./assets/webscte.png" alt="diploma" />
+    <div class="section-container">
+      <h1 class="section-title">DIPLOMA</h1>
+      <div class="card-grid">
+        <section class="card" data-id="diploma-dashboard" data-url="https://webscte.co.in/">
+          <button class="star-btn">☆</button>
+          <h2>Diploma Student Portal (WEBSCTE)</h2>
+          <div class="img-wrapper">
+            <img src="./assets/webscte.png" alt="diploma" />
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <!-- ========== B.Tech Section ========== -->
-    <h1 class="section-title">B.TECH</h1>
-    <section class="card" data-id="makaut" data-url="https://makaut1.ucanapply.com/smartexam/public/student">
-      <button class="star-btn">☆</button>
-      <h2>MAKAUT Student Dashboard</h2>
-      <div class="img-wrapper">
-        <img src="./assets/makaut.jpg" alt="makaut" />
-      </div>
-    </section>
+    <div class="section-container">
+      <h1 class="section-title">B.TECH</h1>
+      <div class="card-grid">
+        <section class="card" data-id="makaut" data-url="https://makaut1.ucanapply.com/smartexam/public/student">
+          <button class="star-btn">☆</button>
+          <h2>MAKAUT Student Dashboard</h2>
+          <div class="img-wrapper">
+            <img src="./assets/makaut.jpg" alt="makaut" />
+          </div>
+        </section>
 
-    <section class="card" data-id="svmcm" data-url="https://svmcm.wb.gov.in/">
-      <button class="star-btn">☆</button>
-      <h2>Apply Scholarship (S.V.M.C.M)</h2>
-      <div class="img-wrapper">
-        <img src="./assets/scholarship.jpg" alt="svmcm" />
-      </div>
-    </section>
+        <section class="card" data-id="svmcm" data-url="https://svmcm.wb.gov.in/">
+          <button class="star-btn">☆</button>
+          <h2>Apply Scholarship (S.V.M.C.M)</h2>
+          <div class="img-wrapper">
+            <img src="./assets/scholarship.jpg" alt="svmcm" />
+          </div>
+        </section>
 
-    <section class="card" data-id="makaut" data-url="https://www.HAVR TO CHANGE.org/">
-      <button class="star-btn">☆</button>
-      <h2>CGPA to Percentage (MAKAUT)</h2>
-      <div class="img-wrapper">
-        <img src="cgpa.jpg" alt="cgpa" />
+        <section class="card" data-id="cgpa-converter" data-url="https://www.HAVRTOCHANGE.org/">
+          <button class="star-btn">☆</button>
+          <h2>CGPA to Percentage (MAKAUT)</h2>
+          <div class="img-wrapper">
+            <img src="./assets/cgpa.jpg" alt="cgpa" />
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <!-- ========== Govt. Jobs Section ========== -->
-    <h1 class="section-title">Govt. Jobs</h1>
-    <section class="card expandable-card">
-      <button class="star-btn">☆</button>
-      <h2>Govt. Jobs Notification</h2>
-      <div class="img-wrapper">
-        <img src="TEXT.webp" alt="jobs" />
+    <div class="section-container">
+      <h1 class="section-title">Govt. Jobs</h1>
+      <div class="job-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="central">Central</button>
+        <button class="filter-btn" data-filter="state">State</button>
+        <button class="filter-btn" data-filter="psu">PSU</button>
       </div>
+      <div class="card-grid">
 
-      <div class="container-in-container">
-
-        <!-- Central Govt. Jobs -->
-        <section class="card expandable-sub-card">
-          <h2 class="toggle-sub">Central Govt. Jobs</h2>
+        <!-- Wrapper Card: Opens Popup -->
+        <section class="card expandable-card" data-id="govt-jobs-popup">
+          <h2>Explore Central / State / PSU Jobs</h2>
           <div class="img-wrapper">
-            <img src="cjobs.webp" alt="c-jobs" />
-          </div>
-          <div class="nested-job-cards hidden">
-            <section class="card job-card" data-url="https://rrbrecruitmentstaging.net/#/auth/landing">
-              <h3>Indian Railway</h3>
-              <div class="img-wrapper">
-                <img src="cjobs.webp" alt="c-jobs" />
-              </div>
-            </section>
+            <img src="./assets/jobs-cover.jpg" alt="govt-jobs-cover" />
           </div>
         </section>
 
-        <!-- State Govt. Jobs -->
-        <section class="card expandable-sub-card">
-          <h2 class="toggle-sub">State Govt. (WB) Jobs</h2>
-          <div class="img-wrapper">
-            <img src="sjobs.jpg" alt="s-jobs" />
-          </div>
-          <div class="nested-job-cards hidden">
-            <section class="card job-card" data-url="https://wbpsc.gov.in">
-              <h3>WBPSC Clerkship</h3>
-              <div class="img-wrapper">
-                <img src="sjobs.webp" alt="s-jobs" />
-              </div>
-            </section>
-          </div>
-        </section>
+        <!-- Hidden Nested Job Data (Used by JS Popup) -->
+        <div class="hidden-job-data" style="display: none;">
 
-        <!-- PSU Jobs -->
-        <section class="card expandable-sub-card">
-          <h2 class="toggle-sub">PSU Jobs</h2>
-          <div class="img-wrapper">
-            <img src="psujobs.jpg" alt="psu-jobs" />
-          </div>
-          <div class="nested-job-cards hidden">
-            <section class="card job-card" data-url="https://www.grse.in/career/">
-              <h3>GRSE</h3>
-              <p>Apply</p>
-              <div class="img-wrapper">
-                <img src="psujobs.webp" alt="psu-jobs" />
-              </div>
-            </section>
-          </div>
-        </section>
+          <!-- Central Govt. Jobs -->
+          <section class="expandable-sub-card" data-type="central">
+            <h2 class="toggle-sub">Central Govt. Jobs</h2>
+            <div class="nested-job-cards">
+              <section class="card job-card" data-url="https://rrbrecruitmentstaging.net/#/auth/landing">
+                <h3>Indian Railway</h3>
+                <div class="img-wrapper">
+                  <img src="./assets/cjobs.webp" alt="c-jobs" />
+                </div>
+              </section>
+            </div>
+          </section>
 
-      </div>
-    </section>
-  </div>
+          <!-- State Govt. Jobs -->
+          <section class="expandable-sub-card" data-type="state">
+            <h2 class="toggle-sub">State Govt. (WB) Jobs</h2>
+            <div class="nested-job-cards">
+              <section class="card job-card" data-url="https://wbpsc.gov.in">
+                <h3>WBPSC Clerkship</h3>
+                <div class="img-wrapper">
+                  <img src="./assets/sjobs.webp" alt="s-jobs" />
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <!-- PSU Jobs -->
+          <section class="expandable-sub-card" data-type="psu">
+            <h2 class="toggle-sub">PSU Jobs</h2>
+            <div class="nested-job-cards">
+              <section class="card job-card" data-url="https://www.grse.in/career/">
+                <h3>GRSE</h3>
+                <p>Apply</p>
+                <div class="img-wrapper">
+                  <img src="./assets/psujobs.webp" alt="psu-jobs" />
+                </div>
+              </section>
+            </div>
+          </section>
+
+        </div>
+
+      </div> <!-- end .card-grid -->
+    </div> <!-- end .section-container (Govt. Jobs) -->
+
+  </div> <!-- end .container -->
+   <!-- ========== Footer ========== -->
+
+  <footer class="site-footer">
+    <p>&copy; 2025 ULVOXO. All rights reserved.</p>
+    <p>Made with ❤️ for students and job seekers.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

@@ -86,50 +86,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ───────────── CARD CLICK / STAR LOGIC ───────────── */
-  document.querySelectorAll('.card').forEach(card => {
-    const id = card.dataset.id;
-    const starBtn = card.querySelector('.star-btn');
-    const url = card.dataset.url?.trim();
+document.querySelectorAll('.card').forEach(card => {
+  const id = card.dataset.id;
+  const starBtn = card.querySelector('.star-btn');
+  const url = card.dataset.url?.trim();
 
-    if (starBtn && !card.closest('.govt-jobs')) {
-      starBtn.addEventListener('click', e => {
-        e.stopPropagation();
+  if (starBtn && !card.closest('.govt-jobs')) {
+    starBtn.addEventListener('click', e => {
+      e.stopPropagation();
 
-        // 🚫 Guests cannot star
-        if (isGuest) {
-          showLoginPrompt();
+      // 🚫 Guests cannot star
+      if (isGuest) {
+        showLoginPrompt();
+        return;
+      }
+
+      const idx = starredIds.indexOf(id);
+      if (idx === -1) {
+        if (starredIds.length < maxStars) {
+          starredIds.push(id);
+          starBtn.classList.add('starred');
+        } else {
+          alert(`You can only star up to ${maxStars} cards.`);
           return;
         }
+      } else {
+        starredIds.splice(idx, 1);
+        starBtn.classList.remove('starred');
+      }
 
-        const idx = starredIds.indexOf(id);
-        if (idx === -1) {
-          if (starredIds.length < maxStars) {
-            starredIds.push(id);
-            starBtn.classList.add('starred');
-          } else {
-            alert(`You can only star up to ${maxStars} cards.`);
-            return;
-          }
-        } else {
-          starredIds.splice(idx, 1);
-          starBtn.classList.remove('starred');
-        }
+      saveStars();
+      repositionCard(card);
+    });
+  }
 
-        saveStars();
-        repositionCard(card);
-      });
-    }
+  // General Card Redirection
+  if (!card.classList.contains('expandable-card')) {
+    card.addEventListener('click', e => {
+      // Prevent clicking the star triggering redirect
+      if (e.target.closest('.star-btn')) return;
+      if (url) window.open(url, '_blank');
+    });
+  }
+});
 
-    // Card redirection
-    if (
-      !card.classList.contains('expandable-card') &&
-      !card.classList.contains('job-card')
-    ) {
-      card.addEventListener('click', () => {
-        if (url) window.open(url, '_blank');
-      });
-    }
-  });
 
   /* ───────────── GOVT JOBS FILTERING ───────────── */
   const filterButtons = document.querySelectorAll('.filter-btn');

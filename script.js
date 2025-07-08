@@ -1,7 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
   const maxStars = 5;
+
+  // 🟢 Try to get user from URL first
   const params = new URLSearchParams(window.location.search);
-  const userKey = params.get('user') ? params.get('user') : 'guest@ulvoxo';
+  let userKey = params.get('user');
+
+  // 🟠 If not in URL, check sessionStorage
+  if (!userKey && sessionStorage.getItem('ulvoxoUser')) {
+    userKey = sessionStorage.getItem('ulvoxoUser');
+  }
+
+  // 🔴 If still no user, fallback to guest
+  if (!userKey) {
+    userKey = 'guest@ulvoxo';
+  }
+
+  // Save to sessionStorage for later page loads
+  sessionStorage.setItem('ulvoxoUser', userKey);
+
   const isGuest = userKey === 'guest@ulvoxo';
   const storageKey = `starredCards_${userKey}`;
   let starredIds = JSON.parse(localStorage.getItem(storageKey)) || [];

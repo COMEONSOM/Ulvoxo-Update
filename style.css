@@ -42,11 +42,14 @@ body {
 .site-header {
   background: var(--white);
   box-shadow: var(--header-shadow);
+  padding: 1rem;
   align-items: left;
 }
 
 .site-logo {
-  max-width: 120px;
+  max-width: 100%;
+  max-height: 86px;
+  margin-left: 10px;
   object-fit: contain;
 }
 

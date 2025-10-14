@@ -4,177 +4,179 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ULVOXO UPDATES</title>
+  <meta name="theme-color" content="#04040c" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- 🔹 Floating Tech Orbs for Modern Background -->
-  <div class="tech-orb"></div>
-  <div class="tech-orb"></div>
-  <div class="tech-orb"></div>
+  <!-- Ambient orbs are decorative — kept in DOM for CSS-only visuals -->
+  <div class="tech-orb" aria-hidden="true"></div>
+  <div class="tech-orb" aria-hidden="true"></div>
+  <div class="tech-orb" aria-hidden="true"></div>
 
-  <!-- ========== Header ========== -->
-  <header class="site-header">
+  <!-- Header -->
+  <header class="site-header" role="banner">
     <div class="logo-wrapper">
-      <img src="./assets/ulvoxo-updates-logo.png" alt="ULVOXO UPDATE Logo" class="site-logo" />
+      <img src="./assets/ulvoxo-updates-logo.png"
+           alt="ULVOXO Updates logo"
+           class="site-logo"
+           width="180"
+           height="48"
+           loading="lazy" />
     </div>
   </header>
 
-  <!-- ========== Main Content ========== -->
-  <div class="container" id="cardContainer">
-
-    <!-- ========== ITI Section ========== -->
-    <div class="section-container">
-      <h1 class="section-title">ITI</h1>
-      <div class="card-grid">
-
-        <section class="card" data-id="iti-admission" data-url="https://scvtwb.in/">
-          <button class="star-btn">☆</button>
+  <!-- Main -->
+  <main class="container" id="cardContainer" role="main" aria-live="polite">
+    <!-- ITI -->
+    <section class="section-container" aria-labelledby="iti-title">
+      <h1 class="section-title" id="iti-title">ITI</h1>
+      <div class="card-grid" data-segment="iti">
+        <article class="card" data-id="iti-admission" data-url="https://scvtwb.in/" tabindex="0" role="link" aria-label="ITI/DIPLOMA Admission">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>ITI/DIPLOMA Admission</h2>
           <div class="img-wrapper">
-            <img src="./assets/common.png" alt="iti-admission" />
+            <img src="./assets/common.png" alt="ITI admission" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card" data-id="iti-dashboard" data-url="https://www.skillindiadigital.gov.in/home">
-          <button class="star-btn">☆</button>
+        <article class="card" data-id="iti-dashboard" data-url="https://www.skillindiadigital.gov.in/home" tabindex="0" role="link" aria-label="Skill India Portal">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Skill India Portal</h2>
           <div class="img-wrapper">
-            <img src="./assets/skillindiadigital.webp" alt="iti" />
+            <img src="./assets/skillindiadigital.webp" alt="Skill India" loading="lazy" />
           </div>
-        </section>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <!-- ========== Diploma Section ========== -->
-    <div class="section-container">
-      <h1 class="section-title">DIPLOMA</h1>
-      <div class="card-grid">
-        <section class="card" data-id="diploma-dashboard" data-url="https://webscte.co.in/">
-          <button class="star-btn">☆</button>
+    <!-- DIPLOMA -->
+    <section class="section-container" aria-labelledby="diploma-title">
+      <h1 class="section-title" id="diploma-title">DIPLOMA</h1>
+      <div class="card-grid" data-segment="diploma">
+        <article class="card" data-id="diploma-dashboard" data-url="https://webscte.co.in/" tabindex="0" role="link" aria-label="Diploma Student Portal (WEBSCTE)">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Diploma Student Portal (WEBSCTE)</h2>
           <div class="img-wrapper">
-            <img src="./assets/webscvt.png" alt="diploma" />
+            <img src="./assets/webscvt.png" alt="WEBSCTE" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card" data-id="mining-books" data-url="https://minemountain.in/website/mining_e_library/">
-          <button class="star-btn">☆</button>
+        <article class="card" data-id="mining-books" data-url="https://minemountain.in/website/mining_e_library/" tabindex="0" role="link" aria-label="Diploma Mining Study Material">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Diploma Mining (Study Material)</h2>
           <div class="img-wrapper">
-            <img src="./assets/mining.jpg" alt="diploma-mining" />
+            <img src="./assets/mining.jpg" alt="Mining books" loading="lazy" />
           </div>
-        </section>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <!-- ========== UG/PG Section ========== -->
-    <div class="section-container">
-      <h1 class="section-title">UG/PG</h1>
-      <div class="card-grid">
-        <section class="card" data-id="makaut" data-url="https://makaut1.ucanapply.com/smartexam/public/student">
-          <button class="star-btn">☆</button>
+    <!-- UG/PG -->
+    <section class="section-container" aria-labelledby="ugpg-title">
+      <h1 class="section-title" id="ugpg-title">UG/PG</h1>
+      <div class="card-grid" data-segment="ugpg">
+        <article class="card" data-id="makaut" data-url="https://makaut1.ucanapply.com/smartexam/public/student" tabindex="0" role="link" aria-label="MAKAUT Student Dashboard">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>MAKAUT Student Dashboard</h2>
           <div class="img-wrapper">
-            <img src="./assets/makaut.jpg" alt="makaut" />
+            <img src="./assets/makaut.jpg" alt="MAKAUT" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card" data-id="svmcm" data-url="https://svmcm.wb.gov.in/">
-          <button class="star-btn">☆</button>
+        <article class="card" data-id="svmcm" data-url="https://svmcm.wb.gov.in/" tabindex="0" role="link" aria-label="Apply Scholarship (S.V.M.C.M)">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Apply Scholarship (S.V.M.C.M)</h2>
           <div class="img-wrapper">
-            <img src="./assets/svmcm.jpeg" alt="svmcm" />
+            <img src="./assets/svmcm.jpeg" alt="S.V.M.C.M" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card" data-id="cgpa-converter" data-url="https://comeonsom.github.io/makaut_grade_converter/">
-          <button class="star-btn">☆</button>
+        <article class="card" data-id="cgpa-converter" data-url="https://comeonsom.github.io/makaut_grade_converter/" tabindex="0" role="link" aria-label="GPA & Percentage Calculator">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>GPA & Percentage Calculator</h2>
           <div class="img-wrapper">
-            <img src="./assets/cgpa.png" alt="cgpa" />
+            <img src="./assets/cgpa.png" alt="CGPA converter" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card" data-id="nism" data-url="https://www.nism.ac.in/">
-          <button class="star-btn">☆</button>
+        <article class="card" data-id="nism" data-url="https://www.nism.ac.in/" tabindex="0" role="link" aria-label="NISM">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>NISM</h2>
           <div class="img-wrapper">
-            <img src="./assets/nism.png" alt="nism" />
+            <img src="./assets/nism.png" alt="NISM" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card" data-id="ju" data-url="https://admissionju.jadavpuruniversity.in/fengadmission/">
-          <button class="star-btn">☆</button>
+        <article class="card" data-id="ju" data-url="https://admissionju.jadavpuruniversity.in/fengadmission/" tabindex="0" role="link" aria-label="JU Admission UG/PG/PHD">
+          <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>JU Admission UG/PG/PHD</h2>
           <div class="img-wrapper">
-            <img src="./assets/ju.png" alt="ju" />
+            <img src="./assets/ju.png" alt="Jadavpur University" loading="lazy" />
           </div>
-        </section>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <!-- ========== Govt. Jobs Section ========== -->
-    <div class="section-container" id ="section-container-jobs" >
-      <h1 class="section-title">JOB UPDATES</h1>
-      <div class="job-filters">
+    <!-- JOBS -->
+    <section class="section-container" id="section-container-jobs" aria-labelledby="jobs-title">
+      <h1 class="section-title" id="jobs-title">JOB UPDATES</h1>
+
+      <div class="job-filters" role="toolbar" aria-label="Filter Jobs">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="central">Central</button>
         <button class="filter-btn" data-filter="state">State</button>
         <button class="filter-btn" data-filter="psu">PSU</button>
       </div>
-      <div class="card-grid">
 
-        <!-- Central Govt. Jobs -->
-        <section class="card job-card" data-type="central" data-url="https://rrbrecruitmentstaging.net/#/auth/landing">
+      <div class="card-grid job-grid" data-segment="jobs">
+        <article class="card job-card" data-id="job-rrb" data-type="central" data-url="https://rrbrecruitmentstaging.net/#/auth/landing" tabindex="0" role="link" aria-label="RRB Login">
           <div class="img-wrapper">
-            <button class="star-btn">☆</button>
-            <img src="./assets/rrb.jpg" alt="Central Job 1" />
+            <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
+            <img src="./assets/rrb.jpg" alt="RRB" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <!-- State Govt. Jobs -->
-        <section class="card job-card" data-type="state" data-url="https://wbpsc.gov.in">
+        <article class="card job-card" data-id="job-wbpsc" data-type="state" data-url="https://wbpsc.gov.in" tabindex="0" role="link" aria-label="WBPSC">
           <div class="img-wrapper">
-            <button class="star-btn">☆</button>
-            <img src="./assets/wbpsc.png" alt="State Job 1" />
+            <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
+            <img src="./assets/wbpsc.png" alt="WBPSC" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <!-- PSU Jobs -->
-        <section class="card job-card" data-type="psu" data-url="https://www.grse.in/career/">
+        <article class="card job-card" data-id="job-grse" data-type="psu" data-url="https://www.grse.in/career/" tabindex="0" role="link" aria-label="GRSE Careers">
           <div class="img-wrapper">
-            <button class="star-btn">☆</button>
-            <img src="./assets/grselogo.png" alt="PSU Job 1" />
+            <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
+            <img src="./assets/grselogo.png" alt="GRSE" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card job-card" data-type="psu" data-url="https://careers.bhel.in/index.jsp">
+        <article class="card job-card" data-id="job-bhel" data-type="psu" data-url="https://careers.bhel.in/index.jsp" tabindex="0" role="link" aria-label="BHEL Careers">
           <div class="img-wrapper">
-            <button class="star-btn">☆</button>
-            <img src="./assets/bhellogo.png" alt="PSU Job 2" />
+            <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
+            <img src="./assets/bhellogo.png" alt="BHEL" loading="lazy" />
           </div>
-        </section>
+        </article>
 
-        <section class="card job-card" data-type="psu" data-url="https://iocl.com/latest-job-opening">
+        <article class="card job-card" data-id="job-iocl" data-type="psu" data-url="https://iocl.com/latest-job-opening" tabindex="0" role="link" aria-label="IOCL Jobs">
           <div class="img-wrapper">
-            <button class="star-btn">☆</button>
-            <img src="./assets/iocllogo.png" alt="PSU Job 3" />
+            <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
+            <img src="./assets/iocllogo.png" alt="IOCL" loading="lazy" />
           </div>
-        </section>
+        </article>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <!-- ========== Footer ========== -->
-  <footer class="site-footer">
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
     <p>&copy; 2025 ULVOXO. All rights reserved.</p>
     <p>Made with ❤️ for students and job seekers.</p>
   </footer>
 
-  <!-- ✅ Version Label -->
-  <div class="version-label">Version 1.1.4</div>
+  <div class="version-label" aria-hidden="true">Version 1.1.4</div>
 
-  <script src="script.js"></script>
+  <!-- optimized script (deferred) -->
+  <script src="script.js" defer></script>
 </body>
 </html>

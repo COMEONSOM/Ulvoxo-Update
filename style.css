@@ -1,11 +1,10 @@
 /* ============================================================
-// 🚀 ULVOXO UPDATES STYLING (OCTOBER 2025 VERSION 1.1.4)
-// 🪄 ULTRA DARK 4K GRADIENT + GLASS GRID
-// ============================================================ */
+   ULVOXO UPDATES STYLING
+   🚀 FUTURISTIC DESIGN SYSTEM (OCT 2025, VERSION 1.1.4)
+   ============================================================ */
 
-/* -------------------- ROOT VARIABLES -------------------- */
-:root {
-  /* COLORS */
+/* -------------------- ROOT -------------------- */
+:root{
   --primary-color: #ffffff;
   --primary-light: #60a5fa;
   --primary-dark: #1e3a8a;
@@ -14,475 +13,130 @@
   --bg-gradient-start: #062160;
   --bg-gradient-end: #450fcd;
   --accent-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  --card-bg: #ffffff0e;
-  --border-color: rgba(255, 255, 255, 0.315);
+  --card-bg: rgba(255,255,255,0.06);
+  --border-color: rgba(255,255,255,0.18);
   --white: #fff;
 
-  /* LAYOUT */
   --max-width: 1200px;
   --section-gap: 4rem;
   --card-padding: 1rem;
   --card-radius: 12px;
-  --transition-speed: 0.3s;
-
-  /* LOGO SIZES */
-  --logo-size-mobile: 120px;
-  --logo-size-tablet: 150px;
-  --logo-size-desktop: 180px;
-
-  /* SHADOWS */
-  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  --box-shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.35);
-  --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --transition-speed: 240ms;
 }
 
-/* ============================================================
-   🧩 BASE STYLES AND GLOBAL RESET
-   ============================================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Inter","Segoe UI",sans-serif;
+  color:var(--text-color);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
 
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  font-family: "Inter", "Segoe UI", sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-  position: relative;
-
-  /* 🌌 Deep-layered static gradient */
-  background: radial-gradient(
-      circle at 30% 30%,
-      #080a1f 0%, /* near-black blue core */
-      #0c0931 25%, /* dark indigo */
-      #1a0b3d 55%, /* violet-blue tone */
-      #04040c 100% /* true black */
-    ),
-    linear-gradient(135deg, #0b0220 0%, #0b0040 40%, #010003 100%);
-  background-blend-mode: overlay;
+  background: radial-gradient(circle at 30% 30%, #080a1f 0%, #0c0931 25%, #1a0b3d 55%, #04040c 100%),
+             linear-gradient(135deg,#0b0220 0%,#0b0040 40%,#010003 100%);
   background-attachment: fixed;
 }
 
-/* ==========================================
-   💠 GLASS GRID OVERLAY (fine micro-squares)
-========================================== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+/* grid overlay subtle */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.25;
-  mix-blend-mode: overlay;
-  backdrop-filter: blur(8px) brightness(1.05);
-  z-index: -1;
+  opacity:0.18;
+  mix-blend-mode:overlay;
+  z-index:-1;
+  pointer-events:none;
+  backdrop-filter: blur(6px);
 }
 
-/* ==========================================
-   ✨ SUBTLE COLOR GLOW BLUR BACKDROP
-========================================== */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(86, 0, 255, 0.15), transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.1), transparent 60%);
-  filter: blur(120px);
-  opacity: 0.5;
-  z-index: -2;
-}
+/* soft glow */
+.tech-orb{position:fixed;width:150px;height:150px;border-radius:50%;filter:blur(70px);z-index:-3;opacity:0.36;pointer-events:none}
+.tech-orb:nth-child(1){top:12%;left:8%;background:radial-gradient(circle, rgba(102,0,255,0.24), transparent 70%)}
+.tech-orb:nth-child(2){bottom:8%;right:18%;background:radial-gradient(circle, rgba(0,102,255,0.18), transparent 70%)}
+.tech-orb:nth-child(3){top:48%;right:34%;background:radial-gradient(circle, rgba(180,0,255,0.14), transparent 70%)}
 
-/* ==========================================
-   🩵 Optional Ambient Orbs for Subtle Depth
-========================================== */
-.tech-orb {
-  position: fixed;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: -3;
-  opacity: 0.4;
-}
+/* header */
+.site-header{background:rgba(15,23,42,0.9);border-bottom:1px solid var(--border-color);padding:.5rem 1rem;display:flex;align-items:center}
+.site-logo{width:90px;height:auto;object-fit:contain;border-radius:8px;filter:invert();transition:transform var(--transition-speed) ease}
 
-.tech-orb:nth-child(1) {
-  top: 15%;
-  left: 10%;
-  background: radial-gradient(circle, rgba(102, 0, 255, 0.25), transparent 70%);
-}
+/* container & sections */
+.container{max-width:var(--max-width);margin:2rem auto;padding:0 1rem}
+.section-container{margin-bottom:var(--section-gap)}
+.section-title{color:var(--white);font-size:2rem;font-weight:700;margin-bottom:1.2rem}
 
-.tech-orb:nth-child(2) {
-  bottom: 10%;
-  right: 20%;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.2), transparent 70%);
-}
-
-.tech-orb:nth-child(3) {
-  top: 50%;
-  right: 35%;
-  background: radial-gradient(circle, rgba(180, 0, 255, 0.15), transparent 70%);
-}
-
-/* ============================================================
-   🧭 HEADER STYLING
-   ============================================================ */
-.site-header {
-  background: rgba(15, 23, 42, 0.9);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.site-logo {
-  width: 90px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  filter: invert();
-}
-
-/* ============================================================
-   🧱 SECTION CONTAINERS
-   ============================================================ */
-.container {
-  max-width: var(--max-width);
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.section-container {
-  margin-bottom: var(--section-gap);
-}
-
-.section-title {
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-/* ============================================================
-   🃏 CARD GRID SYSTEM
-   ============================================================ */
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-/* SINGLE CARD DESIGN */
-.card {
-  position: relative;
-  z-index: 1;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--card-radius);
-  box-shadow: var(--box-shadow);
-  padding: var(--card-padding);
-  width: 100%;
-  max-width: 280px;
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+/* card grid */
+.card-grid{display:flex;flex-wrap:wrap;gap:1.5rem}
+.card{
+  position:relative;
+  z-index:1;
+  background:var(--card-bg);
+  border:1px solid var(--border-color);
+  border-radius:var(--card-radius);
+  padding:var(--card-padding);
+  width:100%; max-width:280px;
+  transition:transform var(--transition-speed), box-shadow var(--transition-speed);
   backdrop-filter: blur(4px);
+  will-change: transform;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.card:focus{outline:3px solid rgba(96,165,250,0.15);transform:translateY(-4px)}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,.42);border-color:var(--primary-light)}
+.card h2{font-size:1.05rem;margin-bottom:.5rem;font-weight:600;color:var(--white)}
+
+/* image */
+.img-wrapper{margin-top:.5rem;height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px}
+.img-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:12px}
+
+/* star button */
+.star-btn{position:absolute;top:10px;right:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:none;font-size:1.2rem;color:var(--muted-text);cursor:pointer;transition:all var(--transition-speed)}
+.star-btn.starred{color:gold;background:rgba(255,255,255,0.12)}
+.star-btn:hover{color:#ffb400;background:rgba(255,255,255,0.12)}
+.star-btn:focus{outline:2px solid rgba(255,255,255,0.06)}
+
+/* disabled tooltip style (reserved) */
+.star-btn.disabled{color:#777;cursor:not-allowed;pointer-events:none}
+
+/* popup skeleton (kept) */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;display:flex;justify-content:center;align-items:center}
+.popup-content{background:rgba(15,23,42,0.9);border:1px solid var(--border-color);backdrop-filter:blur(12px);color:var(--white);padding:2rem;border-radius:16px;max-width:800px}
+
+/* job filters */
+.job-filters{display:flex;justify-content:center;gap:1rem;margin:2rem auto;flex-wrap:wrap}
+.filter-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border-color);color:var(--white);padding:8px 14px;border-radius:20px;font-weight:600;cursor:pointer;transition:all var(--transition-speed)}
+.filter-btn.active,.filter-btn:hover{background:var(--accent-gradient);border:none}
+
+/* jobs specific */
+#section-container-jobs .card-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.job-card{background:#ffffff;padding:.5rem}
+
+/* hide utility (class toggle much cheaper than style writes) */
+.hidden{display:none !important}
+
+/* footer */
+.site-footer{background:rgba(15,23,42,0.9);text-align:center;padding:4rem 1rem;margin-top:var(--section-gap);color:var(--muted-text);border-top:1px solid var(--border-color)}
+.version-label{position:fixed;bottom:8px;right:12px;font-size:.8rem;color:rgba(255,255,255,0.55);z-index:1000;pointer-events:none}
+
+/* responsiveness */
+@media(min-width:1024px){#section-container-jobs .card-grid{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:768px) and (max-width:1023px){#section-container-jobs .card-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){#section-container-jobs .card-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* responsive logo sizes */
+@media(max-width:640px){.site-logo{width:120px}}
+@media(min-width:641px) and (max-width:1024px){.site-logo{width:150px}}
+@media(min-width:1025px){.site-logo{width:180px}}
+
+/* reduce motion: disable subtle animations and heavy background for preference */
+@media (prefers-reduced-motion: reduce){
+  .card, .star-btn, .site-logo{transition:none}
+  body::before{opacity:0.05}
+  .tech-orb{display:none}
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  z-index: 5;
-  box-shadow: var(--box-shadow-hover);
-  border-color: var(--primary-light);
-}
-
-.card h2,
-.card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* IMAGE CONTAINER */
-.img-wrapper {
-  margin-top: 0.5rem;
-  height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.img-wrapper img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  object-fit: contain;
-}
-
-/* ============================================================
-   ⭐ STAR / FAVORITE BUTTON
-   ============================================================ */
-.star-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  font-size: 1.2rem;
-  color: var(--muted-text);
-  cursor: pointer;
-  transition: all var(--transition-speed);
-}
-
-.star-btn.starred {
-  color: gold;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.star-btn:hover {
-  color: #ffb400;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* DISABLED STAR TOOLTIP */
-.star-btn.disabled {
-  color: #777;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.star-btn.disabled::after {
-  content: "Login required to star";
-  position: absolute;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-}
-
-.star-btn.disabled:hover::after {
-  opacity: 1;
-}
-
-/* ============================================================
-   💬 POPUP DESIGN
-   ============================================================ */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(12px);
-  color: var(--white);
-  padding: 2rem;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 800px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  position: relative;
-}
-
-.popup-close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--muted-text);
-  cursor: pointer;
-}
-
-.popup-step1-btn,
-.popup-back-btn {
-  background: var(--accent-gradient);
-  color: var(--white);
-  border: none;
-  padding: 0.75rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity var(--transition-speed);
-}
-
-.popup-step1-btn:hover,
-.popup-back-btn:hover {
-  opacity: 0.85;
-}
-
-/* ============================================================
-   ⚙️ JOB FILTER BUTTONS (GLOBAL)
-   ============================================================ */
-.job-filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem auto;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--border-color);
-  color: var(--white);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  background: var(--accent-gradient);
-  border: none;
-}
-
-/* ============================================================
-   🎯 JOBS SECTION (ISOLATED STYLING)
-   ============================================================ */
-#section-container-jobs {
-  margin-bottom: var(--section-gap);
-}
-
-#section-container-jobs .section-title {
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-#section-container-jobs .card-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  overflow: visible;
-}
-
-#section-container-jobs .job-card {
-  position: relative;
-  z-index: 1;
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: var(--card-radius);
-  box-shadow: var(--box-shadow);
-  padding: 0.5rem;
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  backdrop-filter: blur(4px);
-}
-
-#section-container-jobs .job-card:hover {
-  transform: translateY(-6px);
-  z-index: 5;
-  box-shadow: var(--box-shadow-hover);
-  border-color: var(--primary-light);
-}
-
-#section-container-jobs .img-wrapper {
-  height: 140px;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#section-container-jobs .img-wrapper img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  object-fit: contain;
-}
-
-/* ============================================================
-   🦶 FOOTER STYLING
-   ============================================================ */
-.site-footer {
-  background: rgba(15, 23, 42, 0.9);
-  text-align: center;
-  padding: 4rem 1rem;
-  margin-top: var(--section-gap);
-  color: var(--muted-text);
-  border-top: 1px solid var(--border-color);
-}
-.version-label {
-  position: fixed;
-  bottom: 8px;
-  right: 12px;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.55);
-  font-family: "Inter", "Segoe UI", sans-serif;
-  letter-spacing: 0.5px;
-  user-select: none;
-  pointer-events: none;
-  z-index: 1000;
-  }
-/* ============================================================
-   📱 RESPONSIVE DESIGN
-   ============================================================ */
-@media (min-width: 1024px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* RESPONSIVE LOGO */
-@media (max-width: 640px) {
-  .site-logo {
-    width: var(--logo-size-mobile);
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .site-logo {
-    width: var(--logo-size-tablet);
-  }
-}
-
-@media (min-width: 1025px) {
-  .site-logo {
-    width: var(--logo-size-desktop);
-  }
-}
+/* accessibility: keyboard focus visible */
+:focus{outline-offset:3px}

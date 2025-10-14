@@ -1,29 +1,43 @@
-/* ───────── CSS Root Variables ───────── */
-:root {
-  /* Colors */
-  --primary-color: #0070f3;
-  --primary-light: #e5e5f7;
-  --primary-dark: #005ac1;
-  --text-color: #111;
-  --muted-text: #777;
-  --bg-color: #f9f9f9;
-  --white: #fff;
-  --border-color: #e2e8f0;
+/* ============================================================
+   🌐 ULVOXO'S MODERN GRADIENT THEME (OCT 2025 LATEST UPDATE; VERSION 1.1.4)
+   ============================================================ */
 
-  /* Spacing & Sizing */
+/* -------------------- ROOT VARIABLES -------------------- */
+:root {
+  /* COLORS */
+  --primary-color: #3b82f6;           /* TECH BLUE */
+  --primary-light: #60a5fa;
+  --primary-dark: #1e3a8a;            /* DEEP NAVY */
+  --text-color: #ffffff;
+  --muted-text: #cbd5e1;
+  --bg-gradient-start: #062160;       /* DARK NAVY BASE */
+  --bg-gradient-end: #450fcd;         /* DEEP ROYAL BLUE */
+  --accent-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  --card-bg: #ffffff;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --white: #fff;
+
+  /* LAYOUT */
   --max-width: 1200px;
   --section-gap: 4rem;
   --card-padding: 1rem;
   --card-radius: 12px;
   --transition-speed: 0.3s;
 
-  /* Shadows */
-  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
-  --box-shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  /* LOGO SIZES */
+  --logo-size-mobile: 120px;
+  --logo-size-tablet: 150px;
+  --logo-size-desktop: 180px;
+
+  /* SHADOWS */
+  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.35);
+  --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* ───────── Global Reset & Base ───────── */
+/* ============================================================
+   🧩 BASE STYLES AND GLOBAL RESET
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -32,28 +46,60 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.5;
-  padding-bottom: 5rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  background: radial-gradient(circle at 20% 20%, #1e3a8a, transparent 40%),
+              radial-gradient(circle at 80% 80%, #450fcd, transparent 35%),
+              linear-gradient(145deg, #060c21, #1a0855, #2e26b8);
+  background-attachment: fixed;
 }
 
-/* ───────── Header ───────── */
+/* ANIMATED GLOW BACKDROP */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 60%, rgba(99, 102, 241, 0.25), transparent 70%),
+              radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.2), transparent 80%);
+  animation: glowFlow 10s infinite alternate ease-in-out;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.8;
+  filter: blur(100px);
+}
+
+@keyframes glowFlow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  100% { transform: scale(1.1) translate(2%, -3%); opacity: 0.9; }
+}
+
+/* ============================================================
+   🧭 HEADER STYLING
+   ============================================================ */
 .site-header {
-  background: var(--white);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
   box-shadow: var(--header-shadow);
-  padding: 1rem;
-  align-items: left;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .site-logo {
-  max-width: 100%;
-  max-height: 86px;
-  margin-left: 10px;
+  width: 90px;
+  height: auto;
   object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  filter: invert();
 }
 
-/* ───────── Section Container ───────── */
+/* ============================================================
+   🧱 SECTION CONTAINERS
+   ============================================================ */
 .container {
   max-width: var(--max-width);
   margin: 2rem auto;
@@ -66,50 +112,58 @@ body {
 
 .section-title {
   font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
   font-weight: 700;
-  border-left: 6px solid var(--primary-color);
-  padding-left: 12px;
+  margin-bottom: 1.5rem;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ───────── Card Grid ───────── */
+/* ============================================================
+   🃏 CARD GRID SYSTEM
+   ============================================================ */
 .card-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
 }
 
-/* ───────── Card ───────── */
+/* SINGLE CARD DESIGN */
 .card {
-  background-color: var(--white);
+  position: relative;
+  z-index: 1;
+  background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
   box-shadow: var(--box-shadow);
   padding: var(--card-padding);
   width: 100%;
   max-width: 280px;
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-  position: relative;
-  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  backdrop-filter: blur(4px);
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  z-index: 5;
   box-shadow: var(--box-shadow-hover);
+  border-color: var(--primary-light);
 }
 
-.card h2, .card h3 {
+.card h2,
+.card h3 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  color: #000;
 }
 
 .card p {
   font-size: 0.95rem;
-  color: #444;
+  color: var(--muted-text);
 }
 
+/* IMAGE CONTAINER */
 .img-wrapper {
   margin-top: 0.5rem;
   height: 140px;
@@ -127,190 +181,51 @@ body {
   object-fit: contain;
 }
 
-/* ───────── Star Button ───────── */
+/* ============================================================
+   ⭐ STAR / FAVORITE BUTTON
+   ============================================================ */
 .star-btn {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: var(--white);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   font-size: 1.2rem;
+  color: var(--muted-text);
   cursor: pointer;
-  z-index: 1;
-  transition: color var(--transition-speed);
+  transition: all var(--transition-speed);
 }
 
 .star-btn.starred {
   color: gold;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .star-btn:hover {
   color: #ffb400;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* ───────── Expandable Card (Old) ───────── */
-.expandable-card {
-  background: linear-gradient(135deg, #eaf1ff, #f5faff);
-  border: 2px dashed var(--primary-color);
-  text-align: center;
-  cursor: pointer;
-}
-
-/* ───────── Popup Styling ───────── */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: var(--white);
-  padding: 2rem;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 800px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-  position: relative;
-}
-
-.popup-close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #555;
-}
-
-.popup-step1,
-.popup-step2 {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.popup-step1-btn,
-.popup-back-btn {
-  background: var(--primary-color);
-  color: var(--white);
-  border: none;
-  padding: 0.75rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background var(--transition-speed) ease;
-}
-
-.popup-step1-btn:hover,
-.popup-back-btn:hover {
-  background: var(--primary-dark);
-}
-
-.popup-card {
-  background: var(--bg-color);
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-top: 1rem;
-  transition: all var(--transition-speed);
-}
-
-.popup-card:hover {
-  background: #f0f8ff;
-  transform: scale(1.02);
-  cursor: pointer;
-}
-
-/* ───────── Footer ───────── */
-.site-footer {
-  background: var(--white);
-  text-align: center;
-  padding: 2rem 1rem;
-  margin-top: var(--section-gap);
-  font-size: 0.9rem;
-  color: var(--muted-text);
-  border-top: 1px solid #ddd;
-}
-
-/* ───────── Job Filters ───────── */
-.job-filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem auto;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background-color: var(--primary-light);
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-speed) ease-in-out;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-/* ───────── Govt. Jobs Grid (Instagram Scroll) ───────── */
-.section-container:nth-child(4) .card-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  max-height: 1200px; /* Limit height for scroll */
-  overflow-y: auto;
-  padding-right: 8px; /* room for scrollbar */
-}
-
-/* Large screens: max 8 columns */
-@media (min-width: 1024px) {
-  .section-container:nth-child(4) .card-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-/* Medium screens: 4 columns */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .section-container:nth-child(4) .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* Small screens: 2 columns */
-@media (max-width: 767px) {
-  .section-container:nth-child(4) .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-/* ───────── Disabled Star Button ───────── */
+/* DISABLED STAR TOOLTIP */
 .star-btn.disabled {
-  color: #ccc; /* Greyed out */
+  color: #777;
   cursor: not-allowed;
-  pointer-events: none; /* Disable all interactions */
-  position: relative;
+  pointer-events: none;
 }
 
 .star-btn.disabled::after {
   content: "Login required to star";
   position: absolute;
-  bottom: 125%; /* Above the button */
+  bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
+  background: rgba(0, 0, 0, 0.75);
   color: #fff;
   padding: 5px 8px;
   border-radius: 4px;
@@ -324,4 +239,148 @@ body {
 
 .star-btn.disabled:hover::after {
   opacity: 1;
+}
+
+/* ============================================================
+   💬 POPUP DESIGN
+   ============================================================ */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  color: var(--white);
+  padding: 2rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--muted-text);
+  cursor: pointer;
+}
+
+.popup-step1-btn,
+.popup-back-btn {
+  background: var(--accent-gradient);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition-speed);
+}
+
+.popup-step1-btn:hover,
+.popup-back-btn:hover {
+  opacity: 0.85;
+}
+
+/* ============================================================
+   ⚙️ JOB FILTER BUTTONS
+   ============================================================ */
+.job-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--accent-gradient);
+  border: none;
+}
+
+/* ============================================================
+   🏛️ GOVT JOBS SCROLLABLE GRID (FIXED OVERLAY ISSUE)
+   ============================================================ */
+.scroll-wrapper {
+  max-height: 1200px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.section-container:nth-child(4) .card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  overflow: visible; /* ✅ FIXES HOVER UNDERLAY ISSUE */
+}
+
+/* ============================================================
+   🦶 FOOTER STYLING
+   ============================================================ */
+.site-footer {
+  background: rgba(15, 23, 42, 0.9);
+  text-align: center;
+  padding: 4rem 1rem;
+  margin-top: var(--section-gap);
+  color: var(--muted-text);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ============================================================
+   📱 RESPONSIVE DESIGN
+   ============================================================ */
+@media (min-width: 1024px) {
+  .section-container:nth-child(4) .card-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-container:nth-child(4) .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .section-container:nth-child(4) .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* RESPONSIVE LOGO */
+@media (max-width: 640px) {
+  .site-logo { width: var(--logo-size-mobile); }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .site-logo { width: var(--logo-size-tablet); }
+}
+
+@media (min-width: 1025px) {
+  .site-logo { width: var(--logo-size-desktop); }
 }

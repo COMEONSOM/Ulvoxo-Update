@@ -60,7 +60,7 @@ body::before{
 .tech-orb:nth-child(3){top:48%;right:34%;background:radial-gradient(circle, rgba(180,0,255,0.14), transparent 70%)}
 
 /* header */
-.site-header{background:rgba(15,23,42,0.9);border-bottom:1px solid var(--border-color);padding:.5rem 1rem;display:flex;align-items:center}
+.site-header{background:rgba(10, 16, 28, 0.9);border-bottom:1px solid var(--border-color);padding:.5rem 1rem;display:flex;align-items:center}
 .site-logo{width:90px;height:auto;object-fit:contain;border-radius:8px;filter:invert();transition:transform var(--transition-speed) ease}
 
 /* container & sections */
@@ -119,11 +119,11 @@ body::before{
 
 /* footer */
 .site-footer {
-  background: rgba(15,23,42,0.9);
+  background: rgba(10, 16, 28, 0.9);
   text-align: center;
   padding: 4rem 1rem;
   margin-top: var(--section-gap);
-  color: var(--muted-text);
+  color: #e5d5a7;
   border-top: 1px solid var(--border-color);
   position: relative; /* 👈 make footer the positioning parent */
 }

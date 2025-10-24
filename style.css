@@ -118,8 +118,25 @@ body::before{
 .hidden{display:none !important}
 
 /* footer */
-.site-footer{background:rgba(15,23,42,0.9);text-align:center;padding:4rem 1rem;margin-top:var(--section-gap);color:var(--muted-text);border-top:1px solid var(--border-color)}
-.version-label{position:fixed;bottom:8px;right:12px;font-size:.8rem;color:rgba(255,255,255,0.55);z-index:1000;pointer-events:none}
+.site-footer {
+  background: rgba(15,23,42,0.9);
+  text-align: center;
+  padding: 4rem 1rem;
+  margin-top: var(--section-gap);
+  color: var(--muted-text);
+  border-top: 1px solid var(--border-color);
+  position: relative; /* 👈 make footer the positioning parent */
+}
+
+.version-label {
+  position: absolute; /* 👈 now it's inside the footer */
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  z-index: 10;
+  pointer-events: none;
+}
 
 /* responsiveness */
 @media(min-width:1024px){#section-container-jobs .card-grid{grid-template-columns:repeat(5,1fr)}}

@@ -1,30 +1,21 @@
 /* ============================================================
-   ULVOXO UPDATES STYLING
-   🚀 FUTURISTIC DESIGN SYSTEM (OCT 2025, VERSION 1.1.4)
+   ULVOXO UPDATES STYLING — PERFORMANCE TWEAKED (v1.1.4)
    ============================================================ */
 
-/* ------------------------------------------------------------
-   🧩 ROOT VARIABLES
------------------------------------------------------------- */
-:root {
-  /* Core Colors */
+/* -------------------- ROOT -------------------- */
+:root{
   --primary-color: #ffffff;
   --primary-light: #60a5fa;
   --primary-dark: #1e3a8a;
   --text-color: #ffffff;
   --muted-text: #cbd5e1;
-  --white: #fff;
-
-  /* Backgrounds & Gradients */
   --bg-gradient-start: #062160;
   --bg-gradient-end: #450fcd;
   --accent-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-bg: rgba(255,255,255,0.06);
+  --border-color: rgba(255,255,255,0.18);
+  --white: #fff;
 
-  /* Borders & Effects */
-  --border-color: rgba(255, 255, 255, 0.18);
-
-  /* Layout */
   --max-width: 1200px;
   --section-gap: 4rem;
   --card-padding: 1rem;
@@ -32,388 +23,181 @@
   --transition-speed: 240ms;
 }
 
-/* ------------------------------------------------------------
-   🔄 RESET
------------------------------------------------------------- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* -------------------- RESET -------------------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:auto}
+body{
+  font-family:"Inter","Segoe UI",sans-serif;
+  color:var(--text-color);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
 
-html, body {
-  height: auto;
-}
-
-body {
-  font-family: "Inter", "Segoe UI", sans-serif;
-  color: var(--text-color);
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-
+  /* complex background only on larger screens to avoid painting jank on mobile */
   background:
     radial-gradient(circle at 30% 30%, #080a1f 0%, #0c0931 25%, #1a0b3d 55%, #04040c 100%),
-    linear-gradient(135deg, #0b0220 0%, #0b0040 40%, #010003 100%);
+    linear-gradient(135deg,#0b0220 0%,#0b0040 40%,#010003 100%);
+  /* remove fixed attachment on low-end devices via media query below */
   background-attachment: fixed;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-text-size-adjust:100%;
+  overscroll-behavior-y: contain;
 }
 
-/* ------------------------------------------------------------
-   🧮 GRID OVERLAY
------------------------------------------------------------- */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
+/* grid overlay subtle (reduced on mobile) */
+body::before{
+  content:"";
+  position:fixed; inset:0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-  z-index: -1;
-  pointer-events: none;
-  backdrop-filter: blur(6px);
+  opacity:0.18;
+  mix-blend-mode:overlay;
+  z-index:-1;
+  pointer-events:none;
+  backdrop-filter: blur(6px); /* heavy — disabled on small screens */
+  will-change: opacity;
 }
 
-/* ------------------------------------------------------------
-   🌌 BACKGROUND TECH ORBS (Decorative)
------------------------------------------------------------- */
-.tech-orb {
-  position: fixed;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  filter: blur(70px);
-  z-index: -3;
-  opacity: 0.36;
-  pointer-events: none;
+/* soft glow (tech orbs) — hardware accelerate and avoid pointer events */
+.tech-orb{
+  position:fixed;width:150px;height:150px;border-radius:50%;
+  filter:blur(70px);z-index:-3;opacity:0.36;pointer-events:none;
+  transform: translateZ(0); /* promote to its own layer */
+  will-change: transform, opacity;
+}
+.tech-orb:nth-child(1){top:12%;left:8%;background:radial-gradient(circle, rgba(102,0,255,0.24), transparent 70%)}
+.tech-orb:nth-child(2){bottom:8%;right:18%;background:radial-gradient(circle, rgba(0,102,255,0.18), transparent 70%)}
+.tech-orb:nth-child(3){top:48%;right:34%;background:radial-gradient(circle, rgba(180,0,255,0.14), transparent 70%)}
+
+/* header */
+.site-header{
+  background:rgba(10, 16, 28, 0.9);
+  border-bottom:1px solid var(--border-color);
+  padding:.5rem 1rem;display:flex;align-items:center;
+  position:sticky; top:0; z-index:40; /* sticky header avoids layout jumps */
+  backdrop-filter: blur(6px); /* subtle */
+}
+.site-logo{
+  width:90px;height:auto;object-fit:contain;border-radius:8px;filter:invert();
+  transition:transform var(--transition-speed) ease;
+  display:block;
 }
 
-.tech-orb:nth-child(1) {
-  top: 12%;
-  left: 8%;
-  background: radial-gradient(circle, rgba(102, 0, 255, 0.24), transparent 70%);
+/* container & sections */
+.container{
+  max-width:var(--max-width);margin:2rem auto;padding:0 1rem;
+  -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS */
+  touch-action: pan-y; /* allow vertical scroll gestures to be handled by the browser */
 }
+.section-container{margin-bottom:var(--section-gap)}
+.section-title{color:var(--white);font-size:2rem;font-weight:700;margin-bottom:1.2rem}
 
-.tech-orb:nth-child(2) {
-  bottom: 8%;
-  right: 18%;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.18), transparent 70%);
-}
-
-.tech-orb:nth-child(3) {
-  top: 48%;
-  right: 34%;
-  background: radial-gradient(circle, rgba(180, 0, 255, 0.14), transparent 70%);
-}
-
-/* ------------------------------------------------------------
-   🧭 HEADER
------------------------------------------------------------- */
-.site-header {
-  background: rgba(10, 16, 28, 0.9);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.site-logo {
-  width: 90px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  filter: invert();
-  transition: transform var(--transition-speed) ease;
-}
-
-/* ------------------------------------------------------------
-   🧱 LAYOUT STRUCTURE
------------------------------------------------------------- */
-.container {
-  max-width: var(--max-width);
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.section-container {
-  margin-bottom: var(--section-gap);
-}
-
-.section-title {
-  color: var(--white);
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.2rem;
-}
-
-/* ------------------------------------------------------------
-   🪩 CARD GRID
------------------------------------------------------------- */
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.card {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 280px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--card-radius);
-  padding: var(--card-padding);
-  backdrop-filter: blur(4px);
+/* card grid */
+.card-grid{display:flex;flex-wrap:wrap;gap:1.5rem}
+.card{
+  position:relative;z-index:1;background:var(--card-bg);border:1px solid var(--border-color);
+  border-radius:var(--card-radius);padding:var(--card-padding);width:100%;max-width:280px;
+  transition:transform var(--transition-speed), box-shadow var(--transition-speed);
+  backdrop-filter: blur(4px); /* disabled on small via media query */
   will-change: transform;
-  cursor: pointer;
+  cursor:pointer;
   -webkit-tap-highlight-color: transparent;
-  transition:
-    transform var(--transition-speed),
-    box-shadow var(--transition-speed);
+  -webkit-user-select: none; user-select: none; /* avoid text selection during scroll drags */
+  contain: layout paint; /* isolate rendering for faster paints */
+  transform: translateZ(0); /* promote layer */
+  touch-action: manipulation; /* reduce browser gesture conflicts */
 }
+.card:focus{outline:3px solid rgba(96,165,250,0.15);transform:translateY(-4px)}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,.42);border-color:var(--primary-light)}
+.card h2{font-size:1.05rem;margin-bottom:.5rem;font-weight:600;color:var(--white)}
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
-  border-color: var(--primary-light);
+/* image */
+.img-wrapper{margin-top:.5rem;height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px}
+.img-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:12px;display:block}
+
+/* star button */
+.star-btn{
+  position:absolute;top:10px;right:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+  background:rgba(255,255,255,0.06);border:none;font-size:1.2rem;color:var(--muted-text);cursor:pointer;transition:all var(--transition-speed);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* ensure taps are fast on mobile */
+  backface-visibility:hidden;
 }
+.star-btn.starred{color:gold;background:rgba(255,255,255,0.12)}
+.star-btn:hover{color:#ffb400;background:rgba(255,255,255,0.12)}
+.star-btn:focus{outline:2px solid rgba(255,255,255,0.06)}
+.star-btn.disabled{color:#777;cursor:not-allowed;pointer-events:none}
 
-.card:focus {
-  outline: 3px solid rgba(96, 165, 250, 0.15);
-  transform: translateY(-4px);
-}
+/* popup skeleton */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;display:flex;justify-content:center;align-items:center}
+.popup-content{background:rgba(15,23,42,0.9);border:1px solid var(--border-color);backdrop-filter:blur(12px);color:var(--white);padding:2rem;border-radius:16px;max-width:800px}
 
-.card h2 {
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--white);
-}
+/* job filters */
+.job-filters{display:flex;justify-content:center;gap:1rem;margin:2rem auto;flex-wrap:wrap}
+.filter-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border-color);color:var(--white);padding:8px 14px;border-radius:20px;font-weight:600;cursor:pointer;transition:all var(--transition-speed)}
+.filter-btn.active,.filter-btn:hover{background:var(--accent-gradient);border:none}
 
-/* ------------------------------------------------------------
-   🖼️ IMAGE WRAPPER
------------------------------------------------------------- */
-.img-wrapper {
-  margin-top: 0.5rem;
-  height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-}
+/* jobs specific */
+#section-container-jobs .card-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.job-card{background:#ffffff;padding:.5rem}
 
-.img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-}
+/* hide utility */
+.hidden{display:none !important}
 
-/* ------------------------------------------------------------
-   ⭐ STAR BUTTON
------------------------------------------------------------- */
-.star-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: none;
-  font-size: 1.2rem;
-  color: var(--muted-text);
-  cursor: pointer;
-  transition: all var(--transition-speed);
-}
-
-.star-btn:hover {
-  color: #ffb400;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.star-btn:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.06);
-}
-
-.star-btn.starred {
-  color: gold;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.star-btn.disabled {
-  color: #777;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* ------------------------------------------------------------
-   💬 POPUP (Skeleton)
------------------------------------------------------------- */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(12px);
-  color: var(--white);
-  padding: 2rem;
-  border-radius: 16px;
-  max-width: 800px;
-}
-
-/* ------------------------------------------------------------
-   🎛️ JOB FILTERS
------------------------------------------------------------- */
-.job-filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem auto;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-color);
-  color: var(--white);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background: var(--accent-gradient);
-  border: none;
-}
-
-/* ------------------------------------------------------------
-   💼 JOBS SECTION
------------------------------------------------------------- */
-#section-container-jobs .card-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-}
-
-.job-card {
-  background: #ffffff;
-  padding: 0.5rem;
-}
-
-/* ------------------------------------------------------------
-   🧩 UTILITIES
------------------------------------------------------------- */
-.hidden {
-  display: none !important;
-}
-
-/* ------------------------------------------------------------
-   🦶 FOOTER
------------------------------------------------------------- */
+/* footer */
 .site-footer {
   background: rgba(10, 16, 28, 0.9);
   text-align: center;
   padding: 4rem 1rem;
-  font-size: small;
   margin-top: var(--section-gap);
   color: #e5d5a7;
   border-top: 1px solid var(--border-color);
   position: relative;
 }
+.version-label { position:absolute; bottom:8px; right:12px; font-size:.8rem; color:rgba(255,255,255,0.55); z-index:10; pointer-events:none; }
 
-.version-label {
-  position: absolute;
-  bottom: 8px;
-  right: 12px;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.55);
-  z-index: 10;
-  pointer-events: none;
+/* responsiveness */
+@media (min-width:1024px){#section-container-jobs .card-grid{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:768px) and (max-width:1023px){#section-container-jobs .card-grid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:767px){#section-container-jobs .card-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* responsive logo sizes */
+@media (max-width:640px){.site-logo{width:120px}}
+@media (min-width:641px) and (max-width:1024px){.site-logo{width:150px}}
+@media (min-width:1025px){.site-logo{width:180px}}
+
+/* reduce motion: disable subtle animations and heavy background for preference */
+@media (prefers-reduced-motion: reduce){
+  .card, .star-btn, .site-logo{transition:none}
+  body::before{opacity:0.05}
+  .tech-orb{display:none}
 }
 
-/* ------------------------------------------------------------
-   📱 RESPONSIVENESS
------------------------------------------------------------- */
+/* mobile performance fallbacks (key) */
+@media (max-width: 880px) {
+  /* remove background-attachment fixed: repaint-heavy */
+  body { background-attachment: scroll; }
 
-/* Logo sizes */
-@media (max-width: 640px) {
-  .site-logo {
-    width: 120px;
-  }
+  /* significantly reduce blur/backdrop filters which cause jank on mobile */
+  body::before { backdrop-filter: none; opacity: 0.05; }
+  .site-header { backdrop-filter: none; }
+  .popup-content { backdrop-filter: none; }
+
+  /* hide the expensive tech-orbs on small screens completely */
+  .tech-orb { display: none; }
+
+  /* make cards lighter for paint performance */
+  .card { backdrop-filter: none; box-shadow: none; border: 1px solid rgba(255,255,255,0.06); }
 }
 
-@media (min-width: 641px) and (max-width: 1024px) {
-  .site-logo {
-    width: 150px;
-  }
+/* reduce motion for very-low-end devices */
+@media (max-width: 420px) {
+  .card { transform: none; }
+  .card:hover { transform: none; box-shadow: none; }
 }
 
-@media (min-width: 1025px) {
-  .site-logo {
-    width: 180px;
-  }
-}
-
-/* Job grid layout */
-@media (min-width: 1024px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ------------------------------------------------------------
-   ⚙️ REDUCE MOTION
------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  .star-btn,
-  .site-logo {
-    transition: none;
-  }
-
-  body::before {
-    opacity: 0.05;
-  }
-
-  .tech-orb {
-    display: none;
-  }
-}
-
-/* ------------------------------------------------------------
-   ♿ ACCESSIBILITY
------------------------------------------------------------- */
-:focus {
-  outline-offset: 3px;
-}
+/* accessibility focus outline offset */
+:focus { outline-offset:3px }

@@ -1,8 +1,7 @@
 // ============================================================
-// ULVOXO UPDATES SCRIPT — Performance-first edition
+// ULVOXO UPDATES SCRIPT — Performance-first edition (tweaked)
 // VERSION 1.1.4
 // ============================================================
-
 (function () {
   "use strict";
 
@@ -44,8 +43,7 @@
   // Utility helpers
   // -------------------------
   const $qAll = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  const closestCard = (el) =>
-    el && (el.closest(".card") || el.closest(".job-card"));
+  const closestCard = (el) => el && (el.closest(".card") || el.closest(".job-card"));
   const updateStarAttr = (btn, isStarred) => {
     btn.classList.toggle("starred", isStarred);
     btn.setAttribute("aria-pressed", isStarred ? "true" : "false");
@@ -55,7 +53,7 @@
   // DOM Initialization
   // -------------------------
   (function initCards() {
-    // Handle both normal and job grids
+    // segments include normal and job grids
     const segments = $qAll(".card-grid[data-segment], .card-grid, .job-grid");
     segments.forEach((segment) => {
       const cards = $qAll(".card, .job-card", segment);
@@ -68,18 +66,17 @@
       });
     });
 
-    // Mark starred UI
+    // Mark starred UI once
     $qAll(".card, .job-card").forEach((card) => {
       const id = card.dataset.id;
-      const btn =
-        card.querySelector(".star-btn") || card.querySelector(".job-star-btn");
+      const btn = card.querySelector(".star-btn") || card.querySelector(".job-star-btn");
       if (!btn) return;
       const isStar = id && starredSet.has(id);
       updateStarAttr(btn, isStar);
     });
 
-    // Reorder each segment initially
-    segments.forEach(reorderSegment);
+    // Reorder each segment initially — perform on next rAF to avoid blocking initial paint
+    requestAnimationFrame(() => segments.forEach(reorderSegment));
   })();
 
   // -------------------------
@@ -87,6 +84,7 @@
   // -------------------------
   function reorderSegment(segment) {
     const cards = $qAll(".card, .job-card", segment);
+    if (!cards.length) return;
     const frag = document.createDocumentFragment();
     const starred = [];
     const unstarredByOrigIndex = [];
@@ -98,39 +96,40 @@
     });
 
     unstarredByOrigIndex.sort(
-      (a, b) =>
-        (Number(a.dataset.origIndex) || 0) -
-        (Number(b.dataset.origIndex) || 0)
+      (a, b) => (Number(a.dataset.origIndex) || 0) - (Number(b.dataset.origIndex) || 0)
     );
     starred.concat(unstarredByOrigIndex).forEach((c) => frag.appendChild(c));
     segment.appendChild(frag);
   }
 
   function repositionCard(card) {
-    const id = card.dataset.id;
-    const segment = cardSegmentMap.get(id);
-    if (!segment) return;
-    const cards = $qAll(".card, .job-card", segment);
-    const isStarred = starredSet.has(id);
+    // Do DOM mutation inside rAF to batch layouts
+    requestAnimationFrame(() => {
+      const id = card.dataset.id;
+      const segment = cardSegmentMap.get(id);
+      if (!segment) return;
+      const cards = $qAll(".card, .job-card", segment);
+      const isStarred = starredSet.has(id);
 
-    if (isStarred) {
-      const firstUn = cards.find((c) => !starredSet.has(c.dataset.id));
-      firstUn ? segment.insertBefore(card, firstUn) : segment.appendChild(card);
-    } else {
-      const lastStarIdx = cards.reduce(
-        (acc, c, idx) => (starredSet.has(c.dataset.id) ? idx : acc),
-        -1
-      );
-      const origIndex = Number(card.dataset.origIndex) || 0;
-      let beforeNode = null;
-      for (let i = lastStarIdx + 1; i < cards.length; i++) {
-        if ((Number(cards[i].dataset.origIndex) || 0) > origIndex) {
-          beforeNode = cards[i];
-          break;
+      if (isStarred) {
+        const firstUn = cards.find((c) => !starredSet.has(c.dataset.id));
+        firstUn ? segment.insertBefore(card, firstUn) : segment.appendChild(card);
+      } else {
+        const lastStarIdx = cards.reduce(
+          (acc, c, idx) => (starredSet.has(c.dataset.id) ? idx : acc),
+          -1
+        );
+        const origIndex = Number(card.dataset.origIndex) || 0;
+        let beforeNode = null;
+        for (let i = lastStarIdx + 1; i < cards.length; i++) {
+          if ((Number(cards[i].dataset.origIndex) || 0) > origIndex) {
+            beforeNode = cards[i];
+            break;
+          }
         }
+        beforeNode ? segment.insertBefore(card, beforeNode) : segment.appendChild(card);
       }
-      beforeNode ? segment.insertBefore(card, beforeNode) : segment.appendChild(card);
-    }
+    });
   }
 
   // -------------------------
@@ -139,9 +138,7 @@
   CONTAINER.addEventListener(
     "click",
     (ev) => {
-      const starBtn =
-        ev.target.closest(".star-btn") ||
-        ev.target.closest(".job-star-btn");
+      const starBtn = ev.target.closest(".star-btn") || ev.target.closest(".job-star-btn");
       if (starBtn) {
         ev.stopPropagation();
         const card = closestCard(ev.target);
@@ -179,7 +176,7 @@
         }
       }
     },
-    { passive: true }
+    { passive: true } // passive used; ok for modern browsers
   );
 
   // Keyboard accessibility
@@ -225,6 +222,7 @@
         const filter = btn.dataset.filter;
         if (!filter) return;
 
+        // DOM changes batched naturally (few nodes) — still fast
         filterButtons.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
 

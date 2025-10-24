@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Helping Hand </title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Helping Hand</title>
   <meta name="theme-color" content="#04040c" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Ambient orbs are decorative — kept in DOM for CSS-only visuals -->
+  <!-- Ambient orbs (decorative) -->
   <div class="tech-orb" aria-hidden="true"></div>
   <div class="tech-orb" aria-hidden="true"></div>
   <div class="tech-orb" aria-hidden="true"></div>
@@ -17,18 +16,21 @@
   <!-- Header -->
   <header class="site-header" role="banner">
     <div class="logo-wrapper">
-      <img src="./assets/ulvoxo-updates-logo.png"
-           alt="ULVOXO Updates logo"
-           class="site-logo"
-           width="180"
-           height="48"
-           loading="lazy" />
+      <img
+        src="./assets/ulvoxo-updates-logo.png"
+        alt="ULVOXO Updates logo"
+        class="site-logo"
+        width="180"
+        height="48"
+        loading="lazy"
+        decoding="async" />
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="container" id="cardContainer" role="main" aria-live="polite">
-    <!-- ITI -->
+  <!-- Main content container -->
+  <!-- note: data-touch-enabled helps JS do small mobile-specific optimizations if needed -->
+  <main class="container" id="cardContainer" role="main" aria-live="polite" data-touch-enabled>
+    <!-- sections (unchanged content & semantics) -->
     <section class="section-container" aria-labelledby="iti-title">
       <h1 class="section-title" id="iti-title">ITI</h1>
       <div class="card-grid" data-segment="iti">
@@ -36,7 +38,7 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>ITI/DIPLOMA Admission</h2>
           <div class="img-wrapper">
-            <img src="./assets/common.png" alt="ITI admission" loading="lazy" />
+            <img src="./assets/common.png" alt="ITI admission" loading="lazy" decoding="async" />
           </div>
         </article>
 
@@ -44,13 +46,12 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Skill India Portal</h2>
           <div class="img-wrapper">
-            <img src="./assets/skillindiadigital.webp" alt="Skill India" loading="lazy" />
+            <img src="./assets/skillindiadigital.webp" alt="Skill India" loading="lazy" decoding="async" />
           </div>
         </article>
       </div>
     </section>
 
-    <!-- DIPLOMA -->
     <section class="section-container" aria-labelledby="diploma-title">
       <h1 class="section-title" id="diploma-title">DIPLOMA</h1>
       <div class="card-grid" data-segment="diploma">
@@ -58,7 +59,7 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Diploma Student Portal (WEBSCTE)</h2>
           <div class="img-wrapper">
-            <img src="./assets/webscvt.png" alt="WEBSCTE" loading="lazy" />
+            <img src="./assets/webscvt.png" alt="WEBSCTE" loading="lazy" decoding="async" />
           </div>
         </article>
 
@@ -66,21 +67,21 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Diploma Mining (Study Material)</h2>
           <div class="img-wrapper">
-            <img src="./assets/mining.jpg" alt="Mining books" loading="lazy" />
+            <img src="./assets/mining.jpg" alt="Mining books" loading="lazy" decoding="async" />
           </div>
         </article>
       </div>
     </section>
 
-    <!-- UG/PG -->
     <section class="section-container" aria-labelledby="ugpg-title">
       <h1 class="section-title" id="ugpg-title">UG/PG</h1>
       <div class="card-grid" data-segment="ugpg">
+        <!-- multiple cards: unchanged, only added decoding attribute to images -->
         <article class="card" data-id="makaut" data-url="https://makaut1.ucanapply.com/smartexam/public/student" tabindex="0" role="link" aria-label="MAKAUT Student Dashboard">
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>MAKAUT Student Dashboard</h2>
           <div class="img-wrapper">
-            <img src="./assets/makaut.jpg" alt="MAKAUT" loading="lazy" />
+            <img src="./assets/makaut.jpg" alt="MAKAUT" loading="lazy" decoding="async" />
           </div>
         </article>
 
@@ -88,7 +89,7 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>Apply Scholarship (S.V.M.C.M)</h2>
           <div class="img-wrapper">
-            <img src="./assets/svmcm.jpeg" alt="S.V.M.C.M" loading="lazy" />
+            <img src="./assets/svmcm.jpeg" alt="S.V.M.C.M" loading="lazy" decoding="async" />
           </div>
         </article>
 
@@ -96,7 +97,7 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>GPA & Percentage Calculator</h2>
           <div class="img-wrapper">
-            <img src="./assets/cgpa.png" alt="CGPA converter" loading="lazy" />
+            <img src="./assets/cgpa.png" alt="CGPA converter" loading="lazy" decoding="async" />
           </div>
         </article>
 
@@ -104,7 +105,7 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>NISM</h2>
           <div class="img-wrapper">
-            <img src="./assets/nism.png" alt="NISM" loading="lazy" />
+            <img src="./assets/nism.png" alt="NISM" loading="lazy" decoding="async" />
           </div>
         </article>
 
@@ -112,13 +113,12 @@
           <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
           <h2>JU Admission UG/PG/PHD</h2>
           <div class="img-wrapper">
-            <img src="./assets/ju.png" alt="Jadavpur University" loading="lazy" />
+            <img src="./assets/ju.png" alt="Jadavpur University" loading="lazy" decoding="async" />
           </div>
         </article>
       </div>
     </section>
 
-    <!-- JOBS -->
     <section class="section-container" id="section-container-jobs" aria-labelledby="jobs-title">
       <h1 class="section-title" id="jobs-title">JOB UPDATES</h1>
 
@@ -133,49 +133,48 @@
         <article class="card job-card" data-id="job-rrb" data-type="central" data-url="https://rrbrecruitmentstaging.net/#/auth/landing" tabindex="0" role="link" aria-label="RRB Login">
           <div class="img-wrapper">
             <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
-            <img src="./assets/rrb.jpg" alt="RRB" loading="lazy" />
+            <img src="./assets/rrb.jpg" alt="RRB" loading="lazy" decoding="async" />
           </div>
         </article>
 
         <article class="card job-card" data-id="job-wbpsc" data-type="state" data-url="https://wbpsc.gov.in" tabindex="0" role="link" aria-label="WBPSC">
           <div class="img-wrapper">
             <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
-            <img src="./assets/wbpsc.png" alt="WBPSC" loading="lazy" />
+            <img src="./assets/wbpsc.png" alt="WBPSC" loading="lazy" decoding="async" />
           </div>
         </article>
 
         <article class="card job-card" data-id="job-grse" data-type="psu" data-url="https://www.grse.in/career/" tabindex="0" role="link" aria-label="GRSE Careers">
           <div class="img-wrapper">
             <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
-            <img src="./assets/grselogo.png" alt="GRSE" loading="lazy" />
+            <img src="./assets/grselogo.png" alt="GRSE" loading="lazy" decoding="async" />
           </div>
         </article>
 
         <article class="card job-card" data-id="job-bhel" data-type="psu" data-url="https://careers.bhel.in/index.jsp" tabindex="0" role="link" aria-label="BHEL Careers">
           <div class="img-wrapper">
             <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
-            <img src="./assets/bhellogo.png" alt="BHEL" loading="lazy" />
+            <img src="./assets/bhellogo.png" alt="BHEL" loading="lazy" decoding="async" />
           </div>
         </article>
 
         <article class="card job-card" data-id="job-iocl" data-type="psu" data-url="https://iocl.com/latest-job-opening" tabindex="0" role="link" aria-label="IOCL Jobs">
           <div class="img-wrapper">
             <button class="star-btn" aria-pressed="false" title="Star" tabindex="0">☆</button>
-            <img src="./assets/iocllogo.png" alt="IOCL" loading="lazy" />
+            <img src="./assets/iocllogo.png" alt="IOCL" loading="lazy" decoding="async" />
           </div>
         </article>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <p>&copy; 2025 OPENROOT. All rights reserved.</p>
     <p>Made with ❤️ for students and job seekers.</p>
     <div class="version-label" aria-hidden="true">Version 1.1.4</div>
   </footer>
 
-  <!-- optimized script (deferred) -->
+  <!-- improved script (deferred) -->
   <script src="script.js" defer></script>
 </body>
 </html>

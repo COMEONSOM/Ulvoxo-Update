@@ -185,7 +185,7 @@ body::before{
 
 /* BUTTON (CARD-LIKE) */
 .menu-btn{
-  background: linear-gradient(90deg, rgba(8,8,84,0.95), rgb(0, 0, 0));
+  background: linear-gradient(90deg, rgb(8, 8, 84), rgb(0, 0, 0));
   color: var(--white);
   border:1px solid var(--card-border);
   border-radius:10px;
@@ -439,11 +439,11 @@ body::before{
    FOOTER
    ============================================================ */
 .site-footer{
-  background: linear-gradient(180deg,#03010a 0%, #04040c 100%);
-  color: #d6dbe6;
+  background: linear-gradient(180deg,#03010a00 0%, #04040c00 100%);
+  color: #000000;
+  font-weight: bold;
   padding: 2.5rem 1.25rem;
   text-align:center;
-  border-top:2px solid rgba(140,160,255,0.22);
   position:relative;
   overflow:visible;
 }
@@ -463,10 +463,11 @@ body::before{
 
 .footer-bottom p{ margin:0.2rem 0; font-size:0.88rem; opacity:0.9; }
 .footer-links{ display:flex; justify-content:center; gap:0.4rem; margin-top:1rem; }
-.footer-links a{ color:#8cb9ff; text-decoration:none; font-weight:600; position:relative; font-size:0.9rem; }
+.footer-links a{ color:#000000; font-weight: bolder; text-decoration:none; font-weight:600; position:relative; font-size:0.9rem; }
 .footer-links a::after{ content:""; position:absolute; bottom:-2px; left:50%; width:0; height:2px; background:var(--accent-1); transition:all 260ms ease; }
 .footer-links a:hover{ color:#fff; }
 .footer-links a:hover::after{ width:100%; left:0; }
+.divider{ color:#000000; font-weight: bold; opacity:0.6; user-select:none; }
 .version-label{ position:absolute; right:12px; bottom:8px; font-size:0.75rem; color:rgba(255,255,255,0.55); pointer-events:none; }
 
 /* FOOTER PADDING ADJUST ON VERY SMALL SCREENS */

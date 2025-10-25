@@ -353,7 +353,6 @@ class OpenrootApp {
     this.initialized = false;
   }
 }
-
 /* BOOTSTRAP THE APP (IMMEDIATELY INVOKED ASYNC) */
 (async function bootstrap() {
   try {

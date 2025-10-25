@@ -9,6 +9,8 @@
   --primary-light: #60a5fa;
   --primary-dark: #1e3a8a;
   --text-color: #ffffff;
+  --text-live: #b30000;
+  --highlight: #bd1300;
   --muted-text: #cbd5e1;
   --bg-gradient-start: #062160;
   --bg-gradient-end: #450fcd;
@@ -131,7 +133,7 @@ body::before {
 .site-logo {
   display: block;
   height: auto;
-  width: 160px;
+  width: 120px;
 }
 
 .logo-text {
@@ -160,6 +162,7 @@ body::before {
 
 .menu-title {
   font-size: 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 700;
   color: #0e0342;
   margin-bottom: 2rem;
@@ -174,12 +177,13 @@ body::before {
 
 .menu-btn {
   background: var(--accent-gradient);
-  max-width: 50%;
+  max-width: 60%;
+  min-height: 80px;
   color: var(--white);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 0.8rem 1.8rem;
-  font-weight: 600;
+  font-weight:600;
   cursor: pointer;
   transition: all var(--transition-speed);
   backdrop-filter: blur(4px);
@@ -287,6 +291,41 @@ body::before {
   border-radius: 12px;
 }
 
+/*===============================
+  LIVE INDICATOR
+================================*/
+.live {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--text-live);
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  animation: liveBlink 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.live::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+  background-size: 200% 100%;
+  animation: gradSwipe 1.5s ease-in-out infinite;
+}
+
+@keyframes gradSwipe {
+  to { background-position: 100% 0; }
+}
+@keyframes liveBlink {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
 /* -------------------- STAR BUTTON -------------------- */
 .star-btn {
   position: absolute;
@@ -351,41 +390,110 @@ body::before {
 
 /* -------------------- FOOTER -------------------- */
 .site-footer {
-  background: rgb(1,1,1);
-  font-weight: bold;
-  font-size: 0.865rem;
+  background: linear-gradient(180deg, #03010a 0%, #04040c 100%);
+  color: #d6dbe6;
+  padding: 3rem 1.5rem 2rem;
   text-align: center;
-  padding: 2rem 0.5rem;
-  color: #7bb888;
-  margin-top: auto;
-  border-top: 1px solid var(--border-color);
   position: relative;
+  border-top: 2px solid rgba(140, 160, 255, 0.3);
+  box-shadow: 0 -2px 20px rgba(80, 120, 255, 0.1);
+  overflow: visible;
 }
 
-.version-label {
+/* 🔹 Animated glow strip at the top */
+.site-footer::before {
+  content: "";
   position: absolute;
-  bottom: 8px;
-  right: 12px;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.55);
+  top: 0;
+  left: 50%;
+  width: 60%;
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #60a5fa, #a855f7, transparent);
+  background-size: 200%;
+  animation: glow-line 6s linear infinite;
+}
+
+@keyframes glow-line {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 🔹 Text and layout */
+.footer-bottom p {
+  margin-bottom: 0.2rem;
+  font-size: 0.865rem;
+  opacity: 0.85;
+  letter-spacing: 0.2px;
+}
+
+.footer-links {
+  justify-content: center;
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+/* 🔹 Link styling + hover underline */
+.footer-links a {
+  color: #8cb9ff;
+  text-decoration: none;
+  position: relative;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #60a5fa;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+.footer-links .divider {
+  color: rgba(255, 255, 255, 0.856); /* Divider color */
+  font-size: 0.8rem;                  /* Adjust size — try 1rem to 1.3rem */
+  margin: 0 0.5rem;                 /* Horizontal spacing around it */
+  line-height: 1;                   /* Keeps it vertically centered */
+  user-select: none;
+}
+
+/* 🔹 Version text */
+.version-label {
+  position: absolute; 
+  bottom: 8px; 
+  right: 12px; 
+  font-size: 0.75rem; 
+  color: rgba(255, 255, 255, 0.55); 
   pointer-events: none;
 }
+
+/* Optional: responsive padding tweak */
+@media (max-width: 500px) {
+  .site-footer {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+}
+
 
 /* -------------------- UTILITIES -------------------- */
 .hidden {
   display: none !important;
 }
 
-/* -------------------- CENTER BODY BETWEEN HEADER & FOOTER -------------------- */
-main,
-.container {
-  flex: 1; /* let it grow to fill the space between header & footer */
-  display: flex;
-  align-items: center;      /* vertical centering */
-  justify-content: center;  /* horizontal centering */
-  flex-direction: column;   /* keep content stacked nicely */
-  padding: 2rem 1rem;       /* maintain breathing space */
-}
 
 @keyframes fadeIn {
   from {

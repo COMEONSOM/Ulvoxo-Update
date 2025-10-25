@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" x-data="themeSwitcher()" x-init="init()" :class="{ 'dark': dark }" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Somnath Banerjee — Founder Story</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .dark .bg-white { background-color: #1e293b; }
+    .dark .text-gray-800 { color: #e2e8f0; }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .glass {
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .magnetic {
+      transition: transform 0.15s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 relative overflow-x-hidden">
+
+  <!-- DARK MODE TOGGLE -->
+  <button 
+    @click="toggle()" 
+    class="fixed top-4 right-4 p-2 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition"
+    x-text="dark ? '☀️ Light' : '🌙 Dark'">
+  </button>
+
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <!-- Hero -->
+    <div class="flex flex-col-reverse lg:flex-row items-center gap-10">
+      <div class="lg:w-1/2 space-y-6" x-intersect.once="animateHero()">
+        <h1 class="text-6xl font-bold text-indigo-600">Somnath Banerjee</h1>
+        <p class="text-xl leading-relaxed">
+          Tech-startup founder, educator, and market strategist driving innovation in Tech & Finance.
+        </p>
+        <a href="https://wa.me/7866049865" 
+           class="inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 transition">
+          Connect on WhatsApp
+        </a>
+      </div>
+      <div class="lg:w-1/2 flex justify-center" x-intersect.once="animateHero()">
+        <img src="../assets/director4-photo.jpg" alt="Founder Photo"
+             class="w-72 h-72 object-cover rounded-full shadow-2xl ring-4 ring-indigo-400 floating magnetic"/>
+      </div>
+    </div>
+
+    <!-- Lottie -->
+    <div class="my-16 flex justify-center">
+      <lottie-player 
+        src="https://assets10.lottiefiles.com/packages/lf20_jcikwtux.json"
+        background="transparent" speed="0.8" style="width:300px; height:300px;" loop autoplay>
+      </lottie-player>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="grid gap-8 text-center" x-intersect.once="animateStats()">
+      <div class="glass p-6 rounded-xl hover:scale-105 transition-all duration-300">
+        <h3 class="text-lg font-bold text-indigo-300">Vision</h3>
+        <p>To revolutionize micro-industries by leveraging cutting-edge technology that enhances productivity, sustainability, and scalability—while empowering the next generation through inclusive financial literacy, entrepreneurial education, and equitable access to growth opportunities.</p>
+      </div>
+    </div>
+
+    <!-- Journey So Far -->
+    <section class="py-24 px-6">
+      <h2 class="text-4xl text-center mb-16 font-bold text-indigo-400">Journey So Far</h2>
+      <div class="max-w-5xl mx-auto space-y-16">
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Diploma in Survey Engineering</h3>
+          <p class="text-sm text-slate-400">84% Percentile (Department Topper)</p>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Completed Diploma in Survey Engineering after 12th Science with top marks.</p>
+        </div>
+
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Campus Ambassador at Bhumi</h3>
+          <p class="text-sm text-slate-400">During Diploma</p>
+          <img src="../assets/cabhumi.jpg" class="w-52 mt-4 rounded-lg shadow-lg hover:rotate-1 magnetic"/>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Led child-education and empowerment campaigns on campus.</p>
+        </div>
+
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Internship at Flipkart</h3>
+          <p class="text-sm text-slate-400">During Diploma</p>
+          <div class="flex gap-4 mt-4 flex-wrap">
+            <img src="../assets/flipkart-me.jpg" class="w-52 rounded-lg shadow-md hover:rotate-2 magnetic">
+            <img src="../assets/flipkart-inside.jpg" class="w-52 rounded-lg shadow-md hover:-rotate-2 magnetic">
+          </div>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Completed Supply Chain Management internship, optimizing logistics workflows.</p>
+        </div>
+        
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Instructor at ITI College (Govt. PPP Model)</h3>
+          <p class="text-sm text-slate-400">Post Diploma</p>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Worked as a Survey Department Instructor for several months.</p>
+        </div>
+
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Joined B.Tech in Computer Science</h3>
+          <p class="text-sm text-slate-400">Current</p>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Currently pursuing B.Tech with a focus on modern computing - software development and AI Systems.</p>
+        </div>
+
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Selected as Trainee at CMPDI</h3>
+          <p class="text-sm text-slate-400">During B.Tech</p>
+          <div class="flex gap-4 mt-4 flex-wrap">
+            <img src="../assets/founder-cmpdi.jpg" class="w-52 rounded-lg shadow-md hover:rotate-2 magnetic">
+            <img src="../assets/cmpdi-stc.jpg" class="w-52 rounded-lg shadow-md hover:-rotate-2 magnetic">
+          </div>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Selected as 12-month trainee program at CMPDI HQ (Ranchi) Geomatics Division.</p>
+        </div>
+
+        <div class="relative border-l-4 border-indigo-500 pl-6" data-animate>
+          <h3 class="text-2xl font-semibold text-indigo-300">Equity Market Experience</h3>
+          <p class="text-sm text-slate-400">5+ Years</p>
+          <p class="mt-2 text-slate-300 dark:text-slate-200">Having more than five years of practical experience in equity market and mutual funds.</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-indigo-600 text-white py-16 mt-24 text-center">
+    <h2 class="text-3xl font-bold mb-6">
+      Let's build something impactful together.
+    </h2>
+
+    <!-- Buttons now live INSIDE this section -->
+    <div id="button-container" class="flex justify-center space-x-4">
+      <!-- injected via JS -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    const ref = document.referrer;
+    const container = document.getElementById('button-container');
+
+    const LINK_ULVOXOFINANCE = "https://www.xfactorial.online/";
+    const LINK_ULVOXOMAIN = "https://ulvoxo.web.app/";
+
+    let backLabel = "← Back";
+    let backHref = ref || LINK_ULVOXOMAIN;
+
+    let visitLabel = "";
+    let visitHref = "";
+
+    if (ref.includes("https://ulvoxo.web.app/")) {
+      backLabel = "← Back";
+      visitLabel = "Visit ULVOXO FINANCE";
+      visitHref = LINK_ULVOXOFINANCE;
+    } else if (ref.includes("https://www.xfactorial.online/")) {
+      backLabel = "← Back";
+      visitLabel = "Visit ULVOXO";
+      visitHref = LINK_ULVOXOMAIN;
+    } else {
+      visitLabel = "Visit ULVOXO FINANCE";
+      visitHref = LINK_ULVOXOFINANCE;
+    }
+
+    container.innerHTML = `
+      ${ref ? `<a href="${backHref}" class="inline-block bg-indigo-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:bg-indigo-700 mr-4">${backLabel}</a>` : ""}
+      <a href="${visitHref}" class="inline-block bg-purple-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:bg-purple-700">${visitLabel}</a>
+    `;
+  </script>
+
+   
+  </section>
+
+  <!-- Glow Background Effects -->
+  <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-600 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+
+  <!-- Alpine.js + GSAP Logic -->
+  <script>
+    function themeSwitcher() {
+      return {
+        dark: false,
+        init() {
+          this.dark = localStorage.getItem('dark') === 'true';
+        },
+        toggle() {
+          this.dark = !this.dark;
+          localStorage.setItem('dark', this.dark);
+        }
+      }
+    }
+
+    function animateHero() {
+      gsap.fromTo(
+        '[x-intersect]',
+        { opacity: 0, y: 60, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power4.out', stagger: 0.2 }
+      );
+    }
+
+    function animateStats() {
+      gsap.fromTo(
+        '.grid > *',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)', stagger: 0.2 }
+      );
+    }
+
+    // ScrollTrigger animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray("[data-animate]").forEach(el => {
+      gsap.fromTo(el, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 1, ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    // Magnetic hover effect
+    document.querySelectorAll(".magnetic").forEach(mag => {
+      mag.addEventListener("mousemove", e => {
+        const rect = mag.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        mag.style.transform = `rotateX(${y/30}deg) rotateY(${x/30}deg) scale(1.03)`;
+      });
+      mag.addEventListener("mouseleave", () => {
+        mag.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+      });
+    });
+  </script>
+
+  <!-- LottiePlayer -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</body>
+</html>

@@ -36,11 +36,12 @@
     <section class="section-menu" id="mainSectionMenu">
       <h1 class="menu-title">Choose Your Category</h1>
       <div class="menu-buttons">
-        <button class="menu-btn" data-target="iti-section">ITI</button>
-        <button class="menu-btn" data-target="diploma-section">DIPLOMA</button>
-        <button class="menu-btn" data-target="ugpg-section">UG/PG</button>
-        <button class="menu-btn" data-target="jobs-section">JOB UPDATES</button>
-        <button class="menu-btn" data-target="ai-section">AI TOOLS</button>
+        <button class="menu-btn" data-target="iti-section">ITI RELATED WEBSITES</button>
+        <button class="menu-btn" data-target="diploma-section">DIPLOMA RELATED WEBSITES AND STUDY MATERIALS</button>
+        <button class="menu-btn" data-target="ugpg-section">UG/PG RELATED WEBSITES</button>
+        <button class="menu-btn" data-target="jobs-section"> GET JOB UPDATES</button>
+        <button class="menu-btn" data-target="ai-section">USEFUL AI PLATFORMS</button>
+        <button class="menu-btn" data-target="invest-section">INVESTING RELATED WEBSITES</button>
       </div>
     </section>
 
@@ -229,11 +230,78 @@
         </article>
       </div>
     </section>
+
+    <section class="section-container hidden" id="invest-section" aria-labelledby="invest-title">
+      <button class="back-btn" aria-label="Go back to menu">← Back</button>
+      <h1 class="section-title" id="invest-title">INVESTING RELATED WEBSITES</h1>
+      <div class="card-grid" data-segment="invest">
+        
+        <article class="card" data-id="dividends" data-url="https://klasterme.in/upcoming-dividends">
+          <button class="star-btn">☆</button>
+          <h2>Upcoming Dividends</h2>
+          <p class="live">LIVE</p>
+          <div class="img-wrapper">
+            <img src="./assets/dividendstock.png" alt="dividends" />
+          </div>
+        </article>
+
+        <article class="card" data-id="ipos" data-url="https://zerodha.com/ipo/">
+          <button class="star-btn">☆</button>
+          <h2>Upcoming IPOs</h2>
+          <p class="live">LIVE</p>
+          <div class="img-wrapper">
+            <img src="./assets/ipo.png" alt="ipos" />
+          </div>
+        </article>
+
+        <article class="card" data-id="gmp" data-url="https://www.investorgain.com/report/live-ipo-gmp/331/">
+          <button class="star-btn">☆</button>
+          <h2>Check GMP</h2>
+          <p class="live">LIVE</p>
+          <div class="img-wrapper">
+            <img src="./assets/gmp.png" alt="gmp" />
+          </div>
+        </article>
+
+        <article class="card" data-id="deductions" data-url="https://zerodha.com/brokerage-calculator/">
+          <button class="star-btn">☆</button>
+          <h2>Brokerage Calculator</h2>
+          <div class="img-wrapper">
+            <img src="./assets/deductions.png" alt="deductions" />
+          </div>
+        </article>
+
+        <article class="card" data-id="nse" data-url="https://www.nseindia.com/">
+          <button class="star-btn">☆</button>
+          <h2>NSE</h2>
+          <p class="live">LIVE</p>
+          <div class="img-wrapper">
+            <img src="./assets/nse.png" alt="nse" />
+          </div>
+        </article>
+
+        <article class="card" data-id="nasdaq" data-url="https://tradingeconomics.com/united-states/stock-market">
+          <button class="star-btn">☆</button>
+          <h2>NASDAQ</h2>
+          <p class="live">LIVE</p>
+          <div class="img-wrapper">
+            <img src="./assets/nasdaq.png" alt="nasdaq" />
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <p>&copy; 2025 OPENROOT. All rights reserved.</p>
-    <p>Made with ❤️ for students and job seekers.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2025 OPENROOT. All rights reserved.</p>
+      <p>Made with ❤️ for students and job seekers.</p>
+      <nav class="footer-links">
+        <a href="./other_files/terms.html" id="terms_link">Terms &amp; Conditions</a>
+        <span class="divider">|</span>
+        <a href="./other_files/founder.html" id="founder_link">Founder Details</a>
+      </nav>
+    </div>
     <div class="version-label" aria-hidden="true">Version 1.1.5</div>
   </footer>
 

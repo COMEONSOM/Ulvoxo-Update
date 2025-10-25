@@ -1,589 +1,510 @@
 /* ============================================================
-   OPENROOT HELPING HAND — MODERN STUDENT/CAREER DASHBOARD THEME
-   VERSION 1.1.5
+   OPENROOT HELPING HAND — REFACTORED & OPTIMIZED
+   VERSION 1.1.5-OPT
+   PURPOSE: CLEANED, COMMENTED, RESPONSIVE STYLESHEET
+   NOTES: COMMENTS IN ALL CAPS, VARIABLES FOR EASY EDIT
    ============================================================ */
 
-/* -------------------- ROOT -------------------- */
-:root {
-  --primary-color: #ffffff;
-  --primary-light: #60a5fa;
-  --primary-dark: #1e3a8a;
-  --text-color: #ffffff;
-  --text-live: #b30000;
-  --highlight: #bd1300;
-  --muted-text: #cbd5e1;
-  --bg-gradient-start: #062160;
-  --bg-gradient-end: #450fcd;
-  --accent-gradient: linear-gradient(90deg, #080854, #000000);
-  --accent-gradient2: linear-gradient(90deg, #ffffff, #619de2);
-  --card-bg: rgba(32, 32, 36, 0.176);
-  --border-color: rgba(255, 255, 255, 0.18);
-  --white: #fff;
+/* ============================
+   THEME VARIABLES (GLOBAL)
+   ============================ */
+:root{
+  /* PRIMARY COLOR PALETTE */
+  --white: #ffffff;
+  --text-primary: #0e0342;            /* PRIMARY TEXT COLOR (DARK) */
+  --text-light: #cbd5e1;              /* MUTED TEXT */
+  --accent-1: #60a5fa;                /* LIGHT ACCENT */
+  --accent-2: #1e3a8a;                /* DARK ACCENT */
+  --highlight: #bd1300;               /* LIVE / HIGHLIGHT COLOR */
+  --live-text: #b30000;
 
-  --max-width: 1200px;
-  --section-gap: 4rem;
-  --card-padding: 1rem;
+  /* BACKGROUND (KEEP SIMILAR LOOK, LESS HEAVY FOR PERFORMANCE) */
+  --bg-grad-1: linear-gradient(135deg, #200202 0%, #0b0040 40%, #010003 100%);
+  --bg-radial: radial-gradient(circle at 30% 30%, #e7dd17 0%, #65f349 25%, #366fea 55%, #0c0c04 100%);
+  --page-bg: var(--bg-radial), var(--bg-grad-1);
+
+  /* CARD / LAYOUT */
+  --card-bg: rgba(32,32,36,0.14);
+  --card-border: rgba(255,255,255,0.12);
   --card-radius: 12px;
-  --transition-speed: 240ms;
+  --card-padding: 1rem;
 
-  --card-min-width: 220px;
-  --card-max-width: 320px;
+  /* SIZING & LAYOUT */
+  --max-width: 1200px;
+  --gutter: 1.5rem;
+  --section-gap: 3.5rem;
+  --transition: 220ms;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* CARD GRID MIN/MAX (EASY TO ADJUST) */
+  --card-min: 160px;
+  --card-max: 320px;
+
+  /* ACCESSIBILITY */
+  --focus-ring: 3px;
 }
 
-/* -------------------- RESET -------------------- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-body {
-  font-family: "Inter", "Segoe UI", sans-serif;
-  color: var(--text-color);
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-  background:
-    radial-gradient(circle at 30% 30%, #e7dd17 0%, #65f349 25%, #366fea 55%, #0c0c04 100%),
-    linear-gradient(135deg, #200202 0%, #0b0040 40%, #010003 100%);
-  background-attachment: fixed;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  overscroll-behavior-y: contain;
-}
-
-/* GRID OVERLAY */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-  z-index: -1;
-  pointer-events: none;
-  backdrop-filter: blur(6px);
-}
-
-/* -------------------- TECH ORBS -------------------- */
-.tech-orb {
-  position: fixed;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  filter: blur(70px);
-  z-index: -3;
-  opacity: 0.36;
-  pointer-events: none;
-  transform: translateZ(0);
-}
-
-.tech-orb:nth-child(1) {
-  top: 12%;
-  left: 8%;
-  background: radial-gradient(circle, rgba(102, 0, 255, 0.24), transparent 70%);
-}
-
-.tech-orb:nth-child(2) {
-  bottom: 8%;
-  right: 18%;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.18), transparent 70%);
-}
-
-.tech-orb:nth-child(3) {
-  top: 48%;
-  right: 34%;
-  background: radial-gradient(circle, rgba(180, 0, 255, 0.14), transparent 70%);
-}
-
-/* -------------------- HEADER -------------------- */
-.site-header {
-  background: rgba(9, 14, 23, 0.9);
-  border-bottom: 1px solid var(--border-color);
-  padding: 1rem 1rem;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  backdrop-filter: blur(6px);
-}
-
-.logo-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  max-width: 100%;
-  max-height: 50px;
-}
-
-.site-logo {
-  display: block;
-  height: auto;
-  width: 120px;
-}
-
-.logo-text {
-  font-size: 1rem;
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html,body{ height:100%; margin:0; padding:0; }
+body{
+  font-family: var(--font-sans);
   color: var(--white);
-  letter-spacing: 0.5px;
-  user-select: none;
-  white-space: nowrap;
+  min-height: 100vh;
+  background: var(--page-bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  /* USE CONTAIN FOR BETTER PAINT ISOLATION WHERE SUPPORTED */
+  contain: layout style size;
 }
 
-/* -------------------- MAIN CONTAINER -------------------- */
-.container {
+/* REDUCE MOTION WHEN USER PREFERS */
+@media (prefers-reduced-motion: reduce){
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* GRID OVERLAY (SUBTLE, LOW-IMPACT) */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* ============================================================
+   TECH ORBS (DECORATIVE) - HIDDEN ON LOW-END / SMALL DEVICES
+   ============================================================ */
+.tech-orb{
+  position:fixed;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  filter: blur(64px);
+  opacity:0.36;
+  pointer-events:none;
+  z-index:-3;
+  will-change: transform, opacity;
+}
+.tech-orb:nth-child(1){ top:12%; left:6%; background: radial-gradient(circle, rgba(102,0,255,0.22), transparent 70%); }
+.tech-orb:nth-child(2){ bottom:8%; right:18%; background: radial-gradient(circle, rgba(0,102,255,0.16), transparent 70%); }
+.tech-orb:nth-child(3){ top:48%; right:34%; background: radial-gradient(circle, rgba(180,0,255,0.12), transparent 70%); }
+
+/* HIDE ORBS ON MOBILE & LOW-END DEVICES */
+@media (max-width:880px){ .tech-orb{ display:none; } body::before{ opacity:0.05; backdrop-filter:none; } }
+
+/* ============================================================
+   HEADER / LOGO
+   ============================================================ */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:40;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:0.75rem 1rem;
+  background: rgba(9,14,23,0.86);
+  border-bottom: 1px solid var(--card-border);
+  backdrop-filter: blur(6px);
+}
+
+/* LOGO WRAPPER (FLEXIBLE FOR DIFFERENT WIDTHS) */
+.logo-wrapper{
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  max-height:56px;
+}
+.site-logo{
+  width: 120px;             /* RESPONSIVE CHANGES BELOW */
+  height: auto;
+  display:block;
+}
+.logo-text{
+  color:var(--white);
+  font-weight:700;
+  font-size:1rem;
+  letter-spacing:0.4px;
+  user-select:none;
+  white-space:nowrap;
+}
+
+/* SMALLER LOGO ON VERY SMALL SCREENS */
+@media (max-width:640px){ .site-logo{ width:110px; } }
+@media (min-width:641px) and (max-width:1024px){ .site-logo{ width:140px; } }
+
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+.container{
   max-width: var(--max-width);
-  margin: 2rem auto;
+  margin: 1.75rem auto;
   padding: 0 1rem;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
 }
 
-/* -------------------- MENU SECTION -------------------- */
-.section-menu {
-  text-align: center;
-  margin-top: auto;
+/* ============================================================
+   MENU SECTION (HOME)
+   - SWITCHES BETWEEN GRID & STACK BASED ON SCREEN WIDTH
+   ============================================================ */
+.section-menu{
+  text-align:center;
   margin-bottom: var(--section-gap);
 }
 
-.menu-title {
-  font-size: 2rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+/* MENU TITLE */
+.menu-title{
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  color: var(--text-primary);
   font-weight: 700;
-  color: #0e0342;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.menu-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
+/* MENU BUTTONS LAYOUT
+   - USE FLEX ON SMALLER VIEWPORTS FOR STACKING
+   - USE GRID ON LARGER VIEWPORTS FOR EVEN LAYOUT
+*/
+.menu-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:0.9rem;
 }
 
-.menu-btn {
-  background: var(--accent-gradient);
-  max-width: 60%;
-  min-height: 80px;
+/* BUTTON (CARD-LIKE) */
+.menu-btn{
+  background: linear-gradient(90deg, rgba(8,8,84,0.95), rgb(0, 0, 0));
   color: var(--white);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 0.8rem 1.8rem;
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:0.85rem 1.2rem;
   font-weight:600;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-  backdrop-filter: blur(4px);
+  min-height:64px;
+  min-width: min(420px, 48%);
+  max-width: 100%;
+  cursor:pointer;
+  transition: transform var(--transition), background var(--transition), color var(--transition);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.menu-btn:hover{
+  background: linear-gradient(90deg, var(--white), #619de2);
+  color:#000;
+  transform: translateY(-4px);
+  border:none;
 }
 
-.menu-btn:hover {
-  background: var(--accent-gradient2);
-  color: #000000;
-  border: none;
-  transform: translateY(-3px);
+/* RESPONSIVE ADJUSTMENTS FOR MENU BUTTONS */
+@media (max-width:767px){
+  .menu-buttons{ gap:0.8rem; }
+  .menu-btn{ width:100%; min-width:unset; }
+}
+@media (min-width:768px) and (max-width:1199px){
+  /* AT TABLET/LARGE TABLET USE FLEX WRAP WITH MORE WIDTH */
+  .menu-btn{ min-width:260px; max-width:340px; }
+}
+@media (min-width:1200px){
+  .menu-buttons{ display:grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap:1rem; }
+  .menu-btn{ min-height:84px; }
 }
 
-/* -------------------- SECTION CONTAINERS -------------------- */
-.section-container {
+/* ============================================================
+   SECTION CONTAINER & TITLES
+   ============================================================ */
+.section-container{
   margin-bottom: var(--section-gap);
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 220ms ease-in-out;
 }
-
-.section-title {
-  color:#0e0342;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.2rem;
-  text-align: left;
-}
-
-/* -------------------- BACK BUTTON -------------------- */
-.back-btn {
-  display: inline-block;
+.section-title{
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  color: var(--text-primary);
+  font-weight:700;
   margin-bottom: 1rem;
-  background: var(--accent-gradient);
-  border: 1px solid var(--border-color);
-  color: var(--white);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition-speed);
+  text-align:left;
 }
 
-.back-btn:hover {
-  background: var(--accent-gradient2);
-  color: #000000;
-  border: none;
+/* BACK BUTTON */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:0.6rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, rgba(8,8,84,0.95), rgba(0,0,0,0.8));
+  border:1px solid var(--card-border);
+  color:var(--white);
+  padding:0.45rem 0.85rem;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  transition: transform var(--transition), background var(--transition);
+}
+.back-btn:hover{ transform: translateY(-3px); background: linear-gradient(90deg,var(--white),#619de2); color:#000; }
+
+/* ============================================================
+   CARD GRID / JOB GRID
+   - SWITCHES RESPONSIBLY BASED ON DEVICE
+   - USES CSS GRID BY DEFAULT, SWITCH TO FLEX ON SMALL SCREENS
+   ============================================================ */
+.card-grid{
+  display:grid;
+  gap:1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--card-max), 100%), 1fr));
+  align-items:start;
+  justify-items:center;
 }
 
-/* -------------------- CARD GRID -------------------- */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
-  gap: 1.5rem;
-  align-items: start;
-  justify-items: center;
+/* RESPONSIVE GRID RULES */
+@media (min-width:1200px){
+  .card-grid{ grid-template-columns: repeat(4, 1fr); gap:1.25rem; }
+}
+@media (min-width:1024px) and (max-width:1199px){
+  .card-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width:768px) and (max-width:1023px){
+  .card-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width:767px){
+  /* USE FLEX STACK FOR SMALL PHONES TO IMPROVE SCROLLING PERFORMANCE */
+  .card-grid{ display:flex; flex-direction:column; gap:0.9rem; align-items:stretch; }
 }
 
-/* -------------------- CARD -------------------- */
-.card,
-.job-card {
-  position: relative;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--card-radius);
-  padding: var(--card-padding);
-  width: 100%;
-  max-width: var(--card-max-width);
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  backdrop-filter: blur(4px);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.card:hover,
-.job-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
-  border-color: var(--primary-light);
-}
-
-.card h2,
-.job-card h2 {
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #0e0342;
-}
-
-/* -------------------- IMAGE -------------------- */
-.img-wrapper {
-  margin-top: 0.5rem;
-  height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
-}
-
-.img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
-/*===============================
-  LIVE INDICATOR
-================================*/
-.live {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: var(--text-live);
-  font-weight: bold;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.8rem;
-  animation: liveBlink 1.5s ease-in-out infinite;
-  pointer-events: none;
-}
-.live::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--highlight), transparent);
-  background-size: 200% 100%;
-  animation: gradSwipe 1.5s ease-in-out infinite;
-}
-
-@keyframes gradSwipe {
-  to { background-position: 100% 0; }
-}
-@keyframes liveBlink {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.5); }
-  100% { transform: scale(1); }
-}
-
-/* -------------------- STAR BUTTON -------------------- */
-.star-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(232, 233, 225, 0.258);
-  border: none;
-  font-size: 1rem;
-  color: var(--muted-text);
-  cursor: pointer;
-  transition: all var(--transition-speed);
-}
-
-.star-btn:hover {
-  color: #ffb400;
-  background: rgb(68, 68, 69);
-}
-
-.star-btn.starred {
-  color: gold;
-  background: rgb(1,1,1);
-}
-
-/* -------------------- JOB FILTERS -------------------- */
-.job-filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem auto;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-color);
-  color: var(--white);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  background: var(--accent-gradient);
-  border: none;
-}
-
-/* -------------------- GRID FOR JOB SECTION -------------------- */
-.job-grid {
-  display: grid;
-  gap: 1.5rem;
+/* JOB GRID (SAME RULES AS CARD GRID BUT WITH SMALLER MIN) */
+.job-grid{
+  display:grid;
+  gap:0.9rem;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
+@media (max-width:767px){ .job-grid{ display:flex; flex-direction:column; } }
 
-/* -------------------- FOOTER -------------------- */
-.site-footer {
-  background: linear-gradient(180deg, #03010a 0%, #04040c 100%);
-  color: #d6dbe6;
-  padding: 3rem 1.5rem 2rem;
-  text-align: center;
-  position: relative;
-  border-top: 2px solid rgba(140, 160, 255, 0.3);
-  box-shadow: 0 -2px 20px rgba(80, 120, 255, 0.1);
-  overflow: visible;
+/* ============================================================
+   CARD STYLES
+   - LIGHTWEIGHT, BACKDROP-FILTER REDUCED ON SMALL DEVICES
+   ============================================================ */
+.card,
+.job-card{
+  width:100%;
+  max-width: var(--card-max);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor:pointer;
+  overflow:hidden;
+  align-items:stretch;
+  position:relative;
+  min-height: 120px;
 }
 
-/* 🔹 Animated glow strip at the top */
-.site-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 60%;
-  height: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, #60a5fa, #a855f7, transparent);
-  background-size: 200%;
+/* HOVER EFFECT (DISABLED ON TOUCH DEVICES) */
+@media (hover:hover) and (pointer: fine){
+  .card:hover, .job-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.42);
+    border-color: var(--accent-1);
+  }
+}
+
+/* REDUCE BACKDROP-FILTER ON SMALL / LOW-END DEVICES */
+@media (max-width:880px){
+  .card, .job-card{ backdrop-filter: none; box-shadow:none; }
+}
+
+/* CARD HEADINGS */
+.card h2, .job-card h2{
+  font-size: 1.05rem;
+  font-weight:600;
+  color: var(--text-primary);
+  margin:0;
+}
+
+/* IMAGE WRAPPER - KEEP ASPECT, OBJECT-FIT CONTAIN */
+.img-wrapper{
+  margin-top:0.4rem;
+  height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+}
+.img-wrapper img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:10px;
+  display:block;
+}
+
+/* ============================================================
+   LIVE INDICATOR (ANIMATED BUT ACCESSIBLE)
+   ============================================================ */
+.live{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  color:var(--live-text);
+  font-weight:700;
+  padding:0.18rem 0.55rem;
+  font-size:0.78rem;
+  pointer-events:none;
+  animation: livePulse 1500ms ease-in-out infinite;
+}
+.live::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+  background-size:200% 100%;
+  animation: gradSwipe 1500ms linear infinite;
+}
+@keyframes gradSwipe{ to{ background-position:100% 0; } }
+@keyframes livePulse{ 0%{ transform:scale(1);} 50%{ transform:scale(1.25);} 100%{ transform:scale(1);} }
+
+/* ONLY ANIMATE IF PREFERS-REDUCED-MOTION IS NOT SET */
+@media (prefers-reduced-motion: reduce){
+  .live{ animation:none; }
+  .live::after{ animation:none; }
+}
+
+/* ============================================================
+   STAR BUTTON
+   - SMALL, ACCESSIBLE, WITH ARIA HANDLING (FROM JS)
+   ============================================================ */
+.star-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:26px;
+  height:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background: rgba(232,233,225,0.18);
+  border:none;
+  font-size:1rem;
+  color:var(--text-light);
+  cursor:pointer;
+  transition: transform var(--transition), color var(--transition), background var(--transition);
+  z-index:2;
+}
+.star-btn:hover{ transform: scale(1.05); color: #ffb400; background: rgba(68,68,69,0.85); }
+.star-btn.starred{ color: gold; background: rgba(0,0,0,0.85); }
+
+/* ============================================================
+   JOB FILTERS (TOOLBAR)
+   ============================================================ */
+.job-filters{
+  display:flex;
+  justify-content:center;
+  gap:0.9rem;
+  margin: 1.5rem auto;
+  flex-wrap:wrap;
+}
+.filter-btn{
+  background: rgba(255,255,255,0.04);
+  border:1px solid var(--card-border);
+  color: var(--white);
+  padding:8px 12px;
+  border-radius:20px;
+  font-weight:600;
+  cursor:pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+.filter-btn.active, .filter-btn:hover{ background: linear-gradient(90deg, rgba(8,8,84,0.95), rgba(0,0,0,0.8)); transform: translateY(-2px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{
+  background: linear-gradient(180deg,#03010a 0%, #04040c 100%);
+  color: #d6dbe6;
+  padding: 2.5rem 1.25rem;
+  text-align:center;
+  border-top:2px solid rgba(140,160,255,0.22);
+  position:relative;
+  overflow:visible;
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:2px;
+  background: linear-gradient(90deg, transparent, var(--accent-1), #a855f7, transparent);
+  background-size:200%;
   animation: glow-line 6s linear infinite;
 }
+@keyframes glow-line{ 0%{ background-position:0% 0; } 100%{ background-position:200% 0; } }
 
-@keyframes glow-line {
-  0%   { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
+.footer-bottom p{ margin:0.2rem 0; font-size:0.88rem; opacity:0.9; }
+.footer-links{ display:flex; justify-content:center; gap:0.4rem; margin-top:1rem; }
+.footer-links a{ color:#8cb9ff; text-decoration:none; font-weight:600; position:relative; font-size:0.9rem; }
+.footer-links a::after{ content:""; position:absolute; bottom:-2px; left:50%; width:0; height:2px; background:var(--accent-1); transition:all 260ms ease; }
+.footer-links a:hover{ color:#fff; }
+.footer-links a:hover::after{ width:100%; left:0; }
+.version-label{ position:absolute; right:12px; bottom:8px; font-size:0.75rem; color:rgba(255,255,255,0.55); pointer-events:none; }
+
+/* FOOTER PADDING ADJUST ON VERY SMALL SCREENS */
+@media (max-width:500px){ .site-footer{ padding:2rem 0.75rem; } }
+
+/* ============================================================
+   UTILITIES & ACCESSIBILITY
+   ============================================================ */
+.hidden{ display:none !important; }
+
+/* FOCUS RING FOR KEYBOARD USERS */
+:focus{ outline: 2px solid var(--accent-1); outline-offset: var(--focus-ring); }
+
+/* SIMPLE FADE-IN */
+@keyframes fadeIn{ from{ opacity:0; transform: translateY(8px);} to{ opacity:1; transform:translateY(0);} }
+
+/* ============================================================
+   DEVICE-SPECIFIC BREAKPOINTS / TWEAKS
+   - FOLDING PHONE: TREAT LIKE NARROW TABLET (KEEP COLUMNS LOW)
+   - TV: MAKE LARGER GRID / INCREASE SPACING
+   ============================================================ */
+/* FOLDING PHONE / NARROW TABLET: (WIDTHS ~ 600-860px) */
+@media (min-width:600px) and (max-width:880px){
+  .menu-buttons{ gap:0.8rem; grid-auto-rows: auto; }
+  .card-grid{ gap:1rem; }
 }
 
-/* 🔹 Text and layout */
-.footer-bottom p {
-  margin-bottom: 0.2rem;
-  font-size: 0.865rem;
-  opacity: 0.85;
-  letter-spacing: 0.2px;
+/* LARGER SCREENS / TV (EXTRA SPACING) */
+@media (min-width:1600px){
+  .container{ max-width: 1500px; }
+  .card-grid{ gap:1.5rem; grid-template-columns: repeat(5, 1fr); }
+  .menu-btn{ min-height:96px; padding:1rem 1.5rem; }
 }
 
-.footer-links {
-  justify-content: center;
-  display: flex;
-  gap: 0.25rem;
-  margin-top: 1rem;
-}
+/* ============================================================
+   PERFORMANCE NOTES (DO NOT MODIFY)
+   - LIGHTWEIGHT GRADIENTS, AVOID EXPENSIVE EFFECTS ON SMALL DEVICES
+   - USE WILL-CHANGE SPARINGLY WHEN NECESSARY
+   ============================================================ */
 
-/* 🔹 Link styling + hover underline */
-.footer-links a {
-  color: #8cb9ff;
-  text-decoration: none;
-  position: relative;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.footer-links a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0%;
-  height: 2px;
-  background: #60a5fa;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-}
-
-.footer-links a:hover::after {
-  width: 100%;
-  left: 0;
-}
-.footer-links .divider {
-  color: rgba(255, 255, 255, 0.856); /* Divider color */
-  font-size: 0.8rem;                  /* Adjust size — try 1rem to 1.3rem */
-  margin: 0 0.5rem;                 /* Horizontal spacing around it */
-  line-height: 1;                   /* Keeps it vertically centered */
-  user-select: none;
-}
-
-/* 🔹 Version text */
-.version-label {
-  position: absolute; 
-  bottom: 8px; 
-  right: 12px; 
-  font-size: 0.75rem; 
-  color: rgba(255, 255, 255, 0.55); 
-  pointer-events: none;
-}
-
-/* Optional: responsive padding tweak */
-@media (max-width: 500px) {
-  .site-footer {
-    padding: 2.5rem 1rem 1.5rem;
-  }
-}
-
-
-/* -------------------- UTILITIES -------------------- */
-.hidden {
-  display: none !important;
-}
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* -------------------- RESPONSIVENESS -------------------- */
-@media (min-width: 1200px) {
-  .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1199px) {
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .menu-btn {
-    width: 100%;
-  }
-}
-
-/* -------------------- LOGO SIZES -------------------- */
-@media (max-width: 640px) {
-  .site-logo {
-    width: 120px;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .site-logo {
-    width: 140px;
-  }
-}
-
-/* -------------------- MOBILE PERFORMANCE -------------------- */
-@media (max-width: 880px) {
-  body {
-    background-attachment: scroll;
-  }
-
-  body::before {
-    backdrop-filter: none;
-    opacity: 0.05;
-  }
-
-  .tech-orb {
-    display: none;
-  }
-
-  .site-header {
-    backdrop-filter: none;
-  }
-
-  .card,
-  .job-card {
-    backdrop-filter: none;
-    box-shadow: none;
-  }
-}
-
-/* -------------------- LOW-END DEVICE SAFETY -------------------- */
-@media (max-width: 420px) {
-  .card:hover,
-  .job-card:hover {
-    transform: none;
-    box-shadow: none;
-  }
-}
-
-/* -------------------- ACCESSIBILITY -------------------- */
-:focus {
-  outline-offset: 3px;
-}
+/* END OF STYLESHEET */

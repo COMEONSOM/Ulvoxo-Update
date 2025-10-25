@@ -1,5 +1,5 @@
 // ============================================================
-// ULVOXO UPDATES SCRIPT — Performance-first edition (tweaked)
+// OPENROOT HH SCRIPT — Performance-first edition
 // VERSION 1.1.4
 // ============================================================
 (function () {

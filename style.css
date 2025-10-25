@@ -1,5 +1,5 @@
 /* ============================================================
-   ULVOXO UPDATES STYLING — PERFORMANCE TWEAKED (V1.1.4)
+   ULVOXO UPDATES STYLING — PERFORMANCE TWEAKED -- VERSION 1.1.4
    ============================================================ */
 
 /* -------------------- ROOT -------------------- */
@@ -44,7 +44,7 @@ body {
 
   /* COMPLEX BACKGROUND ONLY ON LARGER SCREENS TO AVOID PAINTING JANK ON MOBILE */
   background:
-    radial-gradient(circle at 30% 30%, #080a1f 0%, #0c0931 25%, #1a0b3d 55%, #04040c 100%),
+    radial-gradient(circle at 30% 30%, #080a1f 0%, #65f349 25%, #1a0b3d 55%, #04040c 100%),
     linear-gradient(135deg, #0b0220 0%, #0b0040 40%, #010003 100%);
   background-attachment: fixed;
 
@@ -373,13 +373,13 @@ body::before {
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .site-logo {
-    width: 150px;
+    width: 140px;
   }
 }
 
 @media (min-width: 1025px) {
   .site-logo {
-    width: 180px;
+    width: 160px;
   }
 }
 

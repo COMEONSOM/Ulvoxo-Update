@@ -1,5 +1,6 @@
 /* ============================================================
-   ULVOXO UPDATES STYLING — PERFORMANCE TWEAKED -- VERSION 1.1.4
+   OPENROOT HELPING HAND — MODERN STUDENT/CAREER DASHBOARD THEME
+   VERSION 1.1.5
    ============================================================ */
 
 /* -------------------- ROOT -------------------- */
@@ -11,8 +12,9 @@
   --muted-text: #cbd5e1;
   --bg-gradient-start: #062160;
   --bg-gradient-end: #450fcd;
-  --accent-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  --card-bg: rgba(255, 255, 255, 0.06);
+  --accent-gradient: linear-gradient(90deg, #080854, #000000);
+  --accent-gradient2: linear-gradient(90deg, #ffffff, #619de2);
+  --card-bg: rgba(32, 32, 36, 0.176);
   --border-color: rgba(255, 255, 255, 0.18);
   --white: #fff;
 
@@ -21,6 +23,9 @@
   --card-padding: 1rem;
   --card-radius: 12px;
   --transition-speed: 240ms;
+
+  --card-min-width: 220px;
+  --card-max-width: 320px;
 }
 
 /* -------------------- RESET -------------------- */
@@ -32,7 +37,11 @@
 
 html,
 body {
-  height: auto;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -41,20 +50,17 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-
-  /* COMPLEX BACKGROUND ONLY ON LARGER SCREENS TO AVOID PAINTING JANK ON MOBILE */
   background:
-    radial-gradient(circle at 30% 30%, #080a1f 0%, #65f349 25%, #1a0b3d 55%, #04040c 100%),
-    linear-gradient(135deg, #0b0220 0%, #0b0040 40%, #010003 100%);
+    radial-gradient(circle at 30% 30%, #e7dd17 0%, #65f349 25%, #366fea 55%, #0c0c04 100%),
+    linear-gradient(135deg, #200202 0%, #0b0040 40%, #010003 100%);
   background-attachment: fixed;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior-y: contain;
 }
 
-/* GRID OVERLAY SUBTLE (REDUCED ON MOBILE) */
+/* GRID OVERLAY */
 body::before {
   content: "";
   position: fixed;
@@ -68,10 +74,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   backdrop-filter: blur(6px);
-  will-change: opacity;
 }
 
-/* SOFT GLOW (TECH ORBS) — HARDWARE ACCELERATE AND AVOID POINTER EVENTS */
+/* -------------------- TECH ORBS -------------------- */
 .tech-orb {
   position: fixed;
   width: 150px;
@@ -82,7 +87,6 @@ body::before {
   opacity: 0.36;
   pointer-events: none;
   transform: translateZ(0);
-  will-change: transform, opacity;
 }
 
 .tech-orb:nth-child(1) {
@@ -103,7 +107,7 @@ body::before {
   background: radial-gradient(circle, rgba(180, 0, 255, 0.14), transparent 70%);
 }
 
-/* HEADER */
+/* -------------------- HEADER -------------------- */
 .site-header {
   background: rgba(9, 14, 23, 0.9);
   border-bottom: 1px solid var(--border-color);
@@ -119,21 +123,26 @@ body::before {
 .logo-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.6rem; /* SPACE BETWEEN LOGO AND TEXT */
+  gap: 0.6rem;
+  max-width: 100%;
+  max-height: 50px;
 }
 
 .site-logo {
   display: block;
   height: auto;
+  width: 160px;
 }
+
 .logo-text {
   font-size: 1rem;
-  color: #ffffff;
+  color: var(--white);
   letter-spacing: 0.5px;
   user-select: none;
   white-space: nowrap;
 }
-/* CONTAINER & SECTIONS */
+
+/* -------------------- MAIN CONTAINER -------------------- */
 .container {
   max-width: var(--max-width);
   margin: 2rem auto;
@@ -142,72 +151,133 @@ body::before {
   touch-action: pan-y;
 }
 
-.section-container {
+/* -------------------- MENU SECTION -------------------- */
+.section-menu {
+  text-align: center;
+  margin-top: auto;
   margin-bottom: var(--section-gap);
 }
 
-.section-title {
+.menu-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0e0342;
+  margin-bottom: 2rem;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.menu-btn {
+  background: var(--accent-gradient);
+  max-width: 50%;
   color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.8rem 1.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  backdrop-filter: blur(4px);
+}
+
+.menu-btn:hover {
+  background: var(--accent-gradient2);
+  color: #000000;
+  border: none;
+  transform: translateY(-3px);
+}
+
+/* -------------------- SECTION CONTAINERS -------------------- */
+.section-container {
+  margin-bottom: var(--section-gap);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.section-title {
+  color:#0e0342;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
+  text-align: left;
 }
 
-/* CARD GRID */
+/* -------------------- BACK BUTTON -------------------- */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  background: var(--accent-gradient);
+  border: 1px solid var(--border-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.back-btn:hover {
+  background: var(--accent-gradient2);
+  color: #000000;
+  border: none;
+}
+
+/* -------------------- CARD GRID -------------------- */
 .card-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
   gap: 1.5rem;
+  align-items: start;
+  justify-items: center;
 }
 
-.card {
+/* -------------------- CARD -------------------- */
+.card,
+.job-card {
   position: relative;
-  z-index: 1;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
   padding: var(--card-padding);
   width: 100%;
-  max-width: 280px;
+  max-width: var(--card-max-width);
   transition: transform var(--transition-speed), box-shadow var(--transition-speed);
   backdrop-filter: blur(4px);
-  will-change: transform;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  user-select: none;
-  contain: layout paint;
-  transform: translateZ(0);
-  touch-action: manipulation;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-.card:focus {
-  outline: 3px solid rgba(96, 165, 250, 0.15);
-  transform: translateY(-4px);
-}
-
-.card:hover {
+.card:hover,
+.job-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .42);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
   border-color: var(--primary-light);
 }
 
-.card h2 {
+.card h2,
+.job-card h2 {
   font-size: 1.05rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
-  color: var(--white);
+  color: #0e0342;
 }
 
-/* IMAGE */
+/* -------------------- IMAGE -------------------- */
 .img-wrapper {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
 }
 
 .img-wrapper img {
@@ -215,73 +285,38 @@ body::before {
   height: 100%;
   object-fit: contain;
   border-radius: 12px;
-  display: block;
 }
 
-/* STAR BUTTON */
+/* -------------------- STAR BUTTON -------------------- */
 .star-btn {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 36px;
-  height: 36px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(232, 233, 225, 0.258);
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--muted-text);
   cursor: pointer;
   transition: all var(--transition-speed);
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  backface-visibility: hidden;
-}
-
-.star-btn.starred {
-  color: gold;
-  background: rgba(255, 255, 255, 0.12);
 }
 
 .star-btn:hover {
   color: #ffb400;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgb(68, 68, 69);
 }
 
-.star-btn:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.06);
+.star-btn.starred {
+  color: gold;
+  background: rgb(1,1,1);
 }
 
-.star-btn.disabled {
-  color: #777;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* POPUP SKELETON */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(12px);
-  color: var(--white);
-  padding: 2rem;
-  border-radius: 16px;
-  max-width: 800px;
-}
-
-/* JOB FILTERS */
+/* -------------------- JOB FILTERS -------------------- */
 .job-filters {
   display: flex;
   justify-content: center;
@@ -307,30 +342,22 @@ body::before {
   border: none;
 }
 
-/* JOBS SPECIFIC */
-#section-container-jobs .card-grid {
+/* -------------------- GRID FOR JOB SECTION -------------------- */
+.job-grid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-.job-card {
-  background: #ffffff;
-  padding: .5rem;
-}
-
-/* HIDE UTILITY */
-.hidden {
-  display: none !important;
-}
-
-/* FOOTER */
+/* -------------------- FOOTER -------------------- */
 .site-footer {
-  background: rgba(10, 16, 28, 0.9);
+  background: rgb(1,1,1);
+  font-weight: bold;
+  font-size: 0.865rem;
   text-align: center;
-  padding: 4rem 1rem;
-  margin-top: var(--section-gap);
-  color: #e5d5a7;
+  padding: 2rem 0.5rem;
+  color: #7bb888;
+  margin-top: auto;
   border-top: 1px solid var(--border-color);
   position: relative;
 }
@@ -339,32 +366,68 @@ body::before {
   position: absolute;
   bottom: 8px;
   right: 12px;
-  font-size: .8rem;
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.55);
-  z-index: 10;
   pointer-events: none;
 }
 
-/* RESPONSIVENESS */
-@media (min-width: 1024px) {
-  #section-container-jobs .card-grid {
-    grid-template-columns: repeat(5, 1fr);
+/* -------------------- UTILITIES -------------------- */
+.hidden {
+  display: none !important;
+}
+
+/* -------------------- CENTER BODY BETWEEN HEADER & FOOTER -------------------- */
+main,
+.container {
+  flex: 1; /* let it grow to fill the space between header & footer */
+  display: flex;
+  align-items: center;      /* vertical centering */
+  justify-content: center;  /* horizontal centering */
+  flex-direction: column;   /* keep content stacked nicely */
+  padding: 2rem 1rem;       /* maintain breathing space */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  #section-container-jobs .card-grid {
+/* -------------------- RESPONSIVENESS -------------------- */
+@media (min-width: 1200px) {
+  .card-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 767px) {
-  #section-container-jobs .card-grid {
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* RESPONSIVE LOGO SIZES */
+@media (max-width: 767px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-btn {
+    width: 100%;
+  }
+}
+
+/* -------------------- LOGO SIZES -------------------- */
 @media (max-width: 640px) {
   .site-logo {
     width: 120px;
@@ -377,30 +440,7 @@ body::before {
   }
 }
 
-@media (min-width: 1025px) {
-  .site-logo {
-    width: 160px;
-  }
-}
-
-/* REDUCE MOTION: DISABLE SUBTLE ANIMATIONS AND HEAVY BACKGROUND FOR PREFERENCE */
-@media (prefers-reduced-motion: reduce) {
-  .card,
-  .star-btn,
-  .site-logo {
-    transition: none;
-  }
-
-  body::before {
-    opacity: 0.05;
-  }
-
-  .tech-orb {
-    display: none;
-  }
-}
-
-/* MOBILE PERFORMANCE FALLBACKS (KEY) */
+/* -------------------- MOBILE PERFORMANCE -------------------- */
 @media (max-width: 880px) {
   body {
     background-attachment: scroll;
@@ -411,38 +451,31 @@ body::before {
     opacity: 0.05;
   }
 
-  .site-header {
-    backdrop-filter: none;
-  }
-
-  .popup-content {
-    backdrop-filter: none;
-  }
-
   .tech-orb {
     display: none;
   }
 
-  .card {
+  .site-header {
+    backdrop-filter: none;
+  }
+
+  .card,
+  .job-card {
     backdrop-filter: none;
     box-shadow: none;
-    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 }
 
-/* REDUCE MOTION FOR VERY-LOW-END DEVICES */
+/* -------------------- LOW-END DEVICE SAFETY -------------------- */
 @media (max-width: 420px) {
-  .card {
-    transform: none;
-  }
-
-  .card:hover {
+  .card:hover,
+  .job-card:hover {
     transform: none;
     box-shadow: none;
   }
 }
 
-/* ACCESSIBILITY FOCUS OUTLINE OFFSET */
+/* -------------------- ACCESSIBILITY -------------------- */
 :focus {
   outline-offset: 3px;
 }
